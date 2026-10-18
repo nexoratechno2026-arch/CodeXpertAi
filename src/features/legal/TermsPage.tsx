@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FileText, Calendar, Printer } from 'lucide-react';
+import { SEOHead } from '@/components/seo/SEOHead';
+import { getBreadcrumbSchema } from '@/lib/seo';
 import styles from './LegalPage.module.css';
 
 export const TermsPage: React.FC = () => {
@@ -8,8 +10,19 @@ export const TermsPage: React.FC = () => {
     window.print();
   };
 
+  const breadcrumbs = getBreadcrumbSchema([
+    { name: 'Home', item: '/' },
+    { name: 'Terms and Conditions', item: '/terms' },
+  ]);
+
   return (
     <div className={styles.pageContainer}>
+      <SEOHead
+        title="Terms and Conditions — CodeXpertAI"
+        description="Official terms of service and conditions for CodeXpertAI, a product of Nexora Techno. Guidelines for platform usage, code execution, and interview simulations."
+        canonicalPath="/terms"
+        jsonLd={[breadcrumbs]}
+      />
       <div className={styles.innerWrap}>
         {/* Breadcrumb Navigation */}
         <nav className={styles.breadcrumb} aria-label="Breadcrumb">

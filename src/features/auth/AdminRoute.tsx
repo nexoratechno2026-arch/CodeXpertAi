@@ -5,6 +5,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { Spinner } from '@/components/ui/Spinner';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
+import { SEOHead } from '@/components/seo/SEOHead';
 
 export interface AdminRouteProps {
   children?: React.ReactNode;
@@ -36,6 +37,7 @@ export const AdminRoute: React.FC<AdminRouteProps> = ({ children }) => {
   if (!isAdmin) {
     return (
       <div className="container" style={{ paddingTop: '48px', paddingBottom: '48px' }}>
+        <SEOHead noindex={true} title="Admin Restricted" />
         <Card
           style={{
             maxWidth: '560px',
@@ -78,5 +80,10 @@ export const AdminRoute: React.FC<AdminRouteProps> = ({ children }) => {
     );
   }
 
-  return children ? <>{children}</> : null;
+  return (
+    <>
+      <SEOHead noindex={true} title="Admin Portal" />
+      {children}
+    </>
+  );
 };

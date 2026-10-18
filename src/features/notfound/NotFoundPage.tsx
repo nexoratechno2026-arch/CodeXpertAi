@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FileQuestion, ArrowLeft } from 'lucide-react';
+import { FileQuestion, ArrowLeft, Home } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
+import { SEOHead } from '@/components/seo/SEOHead';
 
 export const NotFoundPage: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ export const NotFoundPage: React.FC = () => {
         padding: '24px',
       }}
     >
+      <SEOHead noindex={true} title="404 — Page Not Found" description="The page you requested could not be found." />
       <Card
         style={{
           maxWidth: '460px',
@@ -40,13 +42,20 @@ export const NotFoundPage: React.FC = () => {
           404 — Page Not Found
         </h1>
         <p style={{ color: 'var(--color-text-secondary)', fontSize: '14px', lineHeight: 1.6, marginBottom: '24px' }}>
-          The requested route does not exist within the Nexora platform. Please verify the URL or return to safety.
+          The requested route does not exist on CodeXpertAI. Please verify the URL or return to the platform homepage.
         </p>
-        <Link to="/dashboard">
-          <Button variant="primary" leftIcon={<ArrowLeft size={16} />}>
-            Back to Dashboard
-          </Button>
-        </Link>
+        <div style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}>
+          <Link to="/">
+            <Button variant="primary" leftIcon={<Home size={16} />}>
+              Go to Home
+            </Button>
+          </Link>
+          <Link to="/dashboard">
+            <Button variant="secondary" leftIcon={<ArrowLeft size={16} />}>
+              Dashboard
+            </Button>
+          </Link>
+        </div>
       </Card>
     </div>
   );

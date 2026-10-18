@@ -5,6 +5,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
+import { SEOHead } from '@/components/seo/SEOHead';
 import { validateEmail, validatePassword } from '@/lib/validation';
 import { mapFirebaseAuthError } from '@/services/authService';
 import styles from './Auth.module.css';
@@ -115,14 +116,15 @@ export const LoginPage: React.FC = () => {
 
   return (
     <div className={styles.authContainer}>
+      <SEOHead noindex={true} title="Sign In — CodeXpertAI" description="Sign in to your CodeXpertAI account." />
       <Card className={styles.authCard}>
         <div className={styles.header}>
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
-            <img src="/codexpertai-logo.png" alt="CodeXpertai" style={{ height: '48px', width: 'auto', objectFit: 'contain' }} />
+            <img src="/codexpertai-logo.png" alt="CodeXpertAI" style={{ height: '48px', width: 'auto', objectFit: 'contain' }} />
           </div>
-          <h1 className={styles.title}>Sign in to CodeXpert<span style={{ color: '#3B82F6' }}>ai</span></h1>
+          <h1 className={styles.title}>Sign in to CodeXpert<span style={{ color: '#3B82F6' }}>AI</span></h1>
           <p className={styles.subtitle}>
-            Access your unified CodeLab practice & InterviewAI workspace.
+            Access your unified CodeLab practice &amp; InterviewAI workspace.
           </p>
         </div>
 

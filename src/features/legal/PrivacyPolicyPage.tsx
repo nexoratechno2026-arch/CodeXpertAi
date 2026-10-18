@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Shield, Calendar, Printer } from 'lucide-react';
+import { SEOHead } from '@/components/seo/SEOHead';
+import { getBreadcrumbSchema } from '@/lib/seo';
 import styles from './LegalPage.module.css';
 
 export const PrivacyPolicyPage: React.FC = () => {
@@ -8,8 +10,19 @@ export const PrivacyPolicyPage: React.FC = () => {
     window.print();
   };
 
+  const breadcrumbs = getBreadcrumbSchema([
+    { name: 'Home', item: '/' },
+    { name: 'Privacy Policy', item: '/privacy' },
+  ]);
+
   return (
     <div className={styles.pageContainer}>
+      <SEOHead
+        title="Privacy Policy — CodeXpertAI"
+        description="Official privacy policy governing CodeXpertAI, a product of Nexora Techno. How we collect, process, and protect developer and student data."
+        canonicalPath="/privacy"
+        jsonLd={[breadcrumbs]}
+      />
       <div className={styles.innerWrap}>
         {/* Breadcrumb Navigation */}
         <nav className={styles.breadcrumb} aria-label="Breadcrumb">

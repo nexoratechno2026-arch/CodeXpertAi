@@ -9,36 +9,74 @@ import {
   Cpu,
   Layers,
   CheckCircle2,
+  BookOpen,
+  HelpCircle,
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
+import { SEOHead } from '@/components/seo/SEOHead';
+import { getOrganizationSchema, getWebSiteSchema, getSoftwareApplicationSchema, getFAQPageSchema } from '@/lib/seo';
 import { SKILL_LEVELS } from '@/types/skill';
 import styles from './LandingPage.module.css';
 
 export const LandingPage: React.FC = () => {
   const { user } = useAuth();
 
+  const orgSchema = getOrganizationSchema();
+  const siteSchema = getWebSiteSchema();
+  const softwareSchema = getSoftwareApplicationSchema();
+
+  const homepageFaqs = [
+    {
+      question: 'What is CodeXpertAI?',
+      answer: 'CodeXpertAI is a unified developer platform combining structured coding practice with AI-guided mock interviews, created and published by Nexora Techno.',
+    },
+    {
+      question: 'Can users execute code and review test results on CodeXpertAI?',
+      answer: 'Yes. CodeLab features an in-browser Monaco editor and isolated sandboxed execution across Python, JavaScript, TypeScript, Java, C++, and Go with granular test results.',
+    },
+    {
+      question: 'How do AI-guided mock interviews work on InterviewAI?',
+      answer: 'InterviewAI simulates realistic hiring loops across Technical Concepts, Live Coding, System Architecture, SQL, and STAR Behavioral categories with real-time feedback and diagnostic scoring.',
+    },
+  ];
+
+  const faqSchema = getFAQPageSchema(homepageFaqs);
+
   return (
     <div className={styles.landing}>
+      <SEOHead
+        title="CodeXpertAI — Coding Practice &amp; AI Mock Interviews"
+        description="Practice coding problems, execute code, review test results, track your submissions, and prepare for technical interviews with AI-guided mock interviews on CodeXpertAI, a product of Nexora Techno."
+        canonicalPath="/"
+        jsonLd={[orgSchema, siteSchema, softwareSchema, faqSchema]}
+      />
+
       {/* Hero Section */}
-      <section className={styles.hero}>
+      <section className={styles.hero} aria-labelledby="hero-heading">
         <div className="container">
           <div className={styles.heroContent}>
             <div className={styles.badgeWrapper}>
               <Badge variant="accent" size="md">
-                Official CodeXpertai Platform
+                CodeXpertAI • A Product of{' '}
+                <a
+                  href="https://nexoratechno.in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: '#93C5FD', textDecoration: 'underline', marginLeft: '4px' }}
+                >
+                  Nexora Techno
+                </a>
               </Badge>
             </div>
-            <h1 className={styles.heroTitle}>
-              Master Coding Practice & AI Technical Interviews.
-              <span className={styles.heroAccent}> One Unified Workspace.</span>
+            <h1 id="hero-heading" className={styles.heroTitle}>
+              Structured Coding Practice &amp; AI Mock Interviews.
+              <span className={styles.heroAccent}> One Unified Platform.</span>
             </h1>
             <p className={styles.heroSubtitle}>
-              Engineered for serious software students and career preparation.
-              Solve algorithmic challenges in a dedicated Monaco-powered editor and undergo
-              adaptive technical mock interviews with structured AI evaluations.
+              <strong>CodeXpertAI is a unified developer platform combining structured coding practice with AI-guided mock interviews.</strong> Practice programming problems, execute code, review test results, track your submissions, and prepare for technical interviews with AI-guided interview sessions—all in one platform.
             </p>
 
             <div className={styles.heroCtas}>
@@ -67,15 +105,15 @@ export const LandingPage: React.FC = () => {
             <div className={styles.metaRow}>
               <div className={styles.metaItem}>
                 <CheckCircle2 size={15} className={styles.metaIcon} />
-                <span>Single Shared Profile</span>
+                <span>Unified Skill Intelligence</span>
               </div>
               <div className={styles.metaItem}>
                 <CheckCircle2 size={15} className={styles.metaIcon} />
-                <span>5-Tier Topic Progression</span>
+                <span>Monaco Editor &amp; Containerized Sandboxes</span>
               </div>
               <div className={styles.metaItem}>
                 <CheckCircle2 size={15} className={styles.metaIcon} />
-                <span>Sandboxed Execution Security</span>
+                <span>Created by Nexora Techno</span>
               </div>
             </div>
           </div>
@@ -83,11 +121,11 @@ export const LandingPage: React.FC = () => {
       </section>
 
       {/* Two Modules Section */}
-      <section className={styles.modulesSection}>
+      <section className={styles.modulesSection} aria-labelledby="modules-heading">
         <div className="container">
           <div className={styles.sectionHeader}>
             <span className={styles.sectionEyebrow}>Integrated Architecture</span>
-            <h2 className={styles.sectionTitle}>Two Core Modules. One Seamless Ecosystem.</h2>
+            <h2 id="modules-heading" className={styles.sectionTitle}>Two Core Modules. One Seamless Ecosystem.</h2>
             <p className={styles.sectionDesc}>
               No separate websites, fragmented logins, or mismatched profiles. CodeLab and InterviewAI share your progress, analytics, and skill records.
             </p>
@@ -100,10 +138,10 @@ export const LandingPage: React.FC = () => {
                 <div className={styles.cardIconBlue}>
                   <Code2 size={24} />
                 </div>
-                <Badge variant="accent" size="sm">Assessment & Practice</Badge>
+                <Badge variant="accent" size="sm">Assessment &amp; Practice</Badge>
               </div>
 
-              <h3 className={styles.moduleCardTitle}>Nexora CodeLab</h3>
+              <h3 className={styles.moduleCardTitle}>CodeXpertAI CodeLab</h3>
               <p className={styles.moduleCardDesc}>
                 Structured coding practice across topics including Data Structures, Algorithms, SQL, and System Design.
                 Integrated with Monaco Editor and an isolated execution sandbox.
@@ -116,7 +154,7 @@ export const LandingPage: React.FC = () => {
                 </li>
                 <li>
                   <Cpu size={15} />
-                  <span>Sandboxed execution with isolated time & memory limits</span>
+                  <span>Sandboxed execution with isolated time &amp; memory limits</span>
                 </li>
                 <li>
                   <Layers size={15} />
@@ -142,7 +180,7 @@ export const LandingPage: React.FC = () => {
                 <Badge variant="success" size="sm">Technical Mock Interviews</Badge>
               </div>
 
-              <h3 className={styles.moduleCardTitle}>Nexora InterviewAI</h3>
+              <h3 className={styles.moduleCardTitle}>CodeXpertAI InterviewAI</h3>
               <p className={styles.moduleCardDesc}>
                 Simulate authentic technical, programming, SQL, HR, and behavioral interview sessions.
                 Dynamic question generation adapts in real-time to your responses with objective scoring.
@@ -151,7 +189,7 @@ export const LandingPage: React.FC = () => {
               <ul className={styles.featureList}>
                 <li>
                   <Terminal size={15} />
-                  <span>5 interview categories: Technical, Coding, SQL, HR & Behavioral</span>
+                  <span>5 interview categories: Technical, Coding, SQL, HR &amp; Behavioral</span>
                 </li>
                 <li>
                   <ShieldCheck size={15} />
@@ -176,11 +214,11 @@ export const LandingPage: React.FC = () => {
       </section>
 
       {/* 5 Skill Levels Section */}
-      <section className={styles.levelsSection}>
+      <section className={styles.levelsSection} aria-labelledby="levels-heading">
         <div className="container">
           <div className={styles.sectionHeader}>
             <span className={styles.sectionEyebrow}>Multi-Dimensional Mastery</span>
-            <h2 className={styles.sectionTitle}>Five Product-Wide Skill Levels</h2>
+            <h2 id="levels-heading" className={styles.sectionTitle}>Five Product-Wide Skill Levels</h2>
             <p className={styles.sectionDesc}>
               Progress independently across domains. Be intermediate in Python while building foundations in SQL.
             </p>
@@ -202,13 +240,116 @@ export const LandingPage: React.FC = () => {
         </div>
       </section>
 
+      {/* Educational Guides Highlight Section */}
+      <section className={styles.modulesSection} aria-labelledby="guides-heading">
+        <div className="container">
+          <div className={styles.sectionHeader}>
+            <span className={styles.sectionEyebrow}>Curriculum &amp; Strategy</span>
+            <h2 id="guides-heading" className={styles.sectionTitle}>Engineering Preparation Guides</h2>
+            <p className={styles.sectionDesc}>
+              In-depth articles written to help developers practice algorithmic challenges methodically and excel in technical interviews.
+            </p>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
+            <Card padding="md" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div>
+                <Badge variant="default" size="sm" style={{ marginBottom: '8px' }}>Interview Preparation</Badge>
+                <h3 style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--color-text-primary)', margin: '4px 0 8px 0' }}>
+                  How to Prepare for Technical Coding Interviews
+                </h3>
+                <p style={{ fontSize: '0.8125rem', color: 'var(--color-text-secondary)', lineHeight: 1.5 }}>
+                  A structured framework for decomposing algorithms, analyzing Big-O time complexity, and communicating effectively under observation.
+                </p>
+              </div>
+              <Link to="/guides/technical-interview-prep" style={{ marginTop: '16px', color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8125rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '4px' }}>
+                Read Guide <ArrowRight size={13} />
+              </Link>
+            </Card>
+
+            <Card padding="md" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div>
+                <Badge variant="default" size="sm" style={{ marginBottom: '8px' }}>Coding Practice</Badge>
+                <h3 style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--color-text-primary)', margin: '4px 0 8px 0' }}>
+                  How to Practise Programming Problems Effectively
+                </h3>
+                <p style={{ fontSize: '0.8125rem', color: 'var(--color-text-secondary)', lineHeight: 1.5 }}>
+                  Master active problem analysis, decode sandbox error codes (TLE, MLE, WA), and eliminate knowledge gaps with disciplined reviews.
+                </p>
+              </div>
+              <Link to="/guides/effective-coding-practice" style={{ marginTop: '16px', color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8125rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '4px' }}>
+                Read Guide <ArrowRight size={13} />
+              </Link>
+            </Card>
+
+            <Card padding="md" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div>
+                <Badge variant="default" size="sm" style={{ marginBottom: '8px' }}>AI Interview Insights</Badge>
+                <h3 style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--color-text-primary)', margin: '4px 0 8px 0' }}>
+                  Mastering AI-Guided Technical &amp; Mock Interviews
+                </h3>
+                <p style={{ fontSize: '0.8125rem', color: 'var(--color-text-secondary)', lineHeight: 1.5 }}>
+                  Understand multi-turn AI interview mechanics, structure STAR behavioral narratives, and turn diagnostic reports into career growth.
+                </p>
+              </div>
+              <Link to="/guides/ai-mock-interview-guide" style={{ marginTop: '16px', color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8125rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '4px' }}>
+                Read Guide <ArrowRight size={13} />
+              </Link>
+            </Card>
+          </div>
+
+          <div style={{ textAlign: 'center', marginTop: '24px' }}>
+            <Link to="/guides">
+              <Button variant="ghost" size="sm" rightIcon={<BookOpen size={14} />}>
+                Browse All Engineering Guides
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Frequently Asked Questions Section (AEO) */}
+      <section className={styles.modulesSection} aria-labelledby="faq-heading">
+        <div className="container">
+          <div className={styles.sectionHeader}>
+            <span className={styles.sectionEyebrow}>Direct Answers</span>
+            <h2 id="faq-heading" className={styles.sectionTitle}>Frequently Asked Questions</h2>
+            <p className={styles.sectionDesc}>
+              Clear, factual answers to essential questions about CodeXpertAI, CodeLab, and InterviewAI.
+            </p>
+          </div>
+
+          <div style={{ maxWidth: '800px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            {homepageFaqs.map((faq, idx) => (
+              <Card key={idx} padding="md">
+                <h3 style={{ fontSize: '0.9375rem', fontWeight: 700, color: 'var(--color-text-primary)', margin: '0 0 8px 0', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <HelpCircle size={16} color="var(--color-accent)" />
+                  {faq.question}
+                </h3>
+                <p style={{ fontSize: '0.8125rem', color: 'var(--color-text-secondary)', lineHeight: 1.6, margin: 0 }}>
+                  {faq.answer}
+                </p>
+              </Card>
+            ))}
+          </div>
+
+          <div style={{ textAlign: 'center', marginTop: '24px' }}>
+            <Link to="/faq">
+              <Button variant="secondary" size="sm" rightIcon={<ArrowRight size={14} />}>
+                View All Frequently Asked Questions
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Call to action */}
       <section className={styles.ctaSection}>
         <div className="container">
           <Card className={styles.ctaCard} padding="lg">
             <h2 className={styles.ctaTitle}>Ready to begin your preparation?</h2>
             <p className={styles.ctaDesc}>
-              Create your unified student profile to access coding problems and configure your first mock interview.
+              Create your unified student profile to access coding problems and configure your first mock interview on CodeXpertAI, a product of Nexora Techno.
             </p>
             <div className={styles.ctaButtons}>
               <Link to="/signup">
@@ -216,9 +357,9 @@ export const LandingPage: React.FC = () => {
                   Register as Student
                 </Button>
               </Link>
-              <Link to="/codelab">
+              <Link to="/about">
                 <Button variant="secondary" size="lg">
-                  Browse Problem Sets
+                  About CodeXpertAI
                 </Button>
               </Link>
             </div>

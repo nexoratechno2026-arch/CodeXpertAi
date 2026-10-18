@@ -5,6 +5,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
+import { SEOHead } from '@/components/seo/SEOHead';
 import {
   validateEmail,
   validatePassword,
@@ -101,14 +102,15 @@ export const SignupPage: React.FC = () => {
 
   return (
     <div className={styles.authContainer}>
+      <SEOHead noindex={true} title="Create Account — CodeXpertAI" description="Create your CodeXpertAI student account." />
       <Card className={styles.authCard}>
         <div className={styles.header}>
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
-            <img src="/codexpertai-logo.png" alt="CodeXpertai" style={{ height: '48px', width: 'auto', objectFit: 'contain' }} />
+            <img src="/codexpertai-logo.png" alt="CodeXpertAI" style={{ height: '48px', width: 'auto', objectFit: 'contain' }} />
           </div>
           <h1 className={styles.title}>Create your Account</h1>
           <p className={styles.subtitle}>
-            Join CodeXpertai to begin structured coding practice and mock technical interviews.
+            Join CodeXpertAI to begin structured coding practice and mock technical interviews.
           </p>
         </div>
 

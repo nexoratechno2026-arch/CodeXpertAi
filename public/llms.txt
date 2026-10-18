@@ -1,0 +1,28 @@
+# CodeXpertAI
+
+> CodeXpertAI is a unified developer platform combining structured coding practice with AI-guided mock interviews.
+> Brand Attribution: A product of Nexora Techno (https://nexoratechno.in).
+
+## Overview
+CodeXpertAI brings together algorithmic assessment and real-time technical mock interviews into a single shared environment. It is created and published by Nexora Techno.
+
+## Core Capabilities
+- **CodeLab:** Practice algorithmic programming problems across 14 topic domains. Features Monaco Editor, sandboxed code execution, unit test verification, and submission history tracking. Supported languages include Python, JavaScript, TypeScript, Java, C++, and Go.
+- **InterviewAI:** AI-orchestrated technical mock interviews covering 5 categories (Technical Concepts, Live Coding, System Design, SQL Architecture, and HR/STAR Behavioral). Features real-time voice interaction, simulated video interviewer, dynamic follow-up questioning, and objective evaluation rubrics.
+- **Unified Skill Intelligence:** Single student profile where objective code execution metrics and subjective interview evaluations remain distinct yet correlated.
+
+## Key Public URLs
+- Homepage: https://nexoratechno-code.web.app/
+- About CodeXpertAI: https://nexoratechno-code.web.app/about
+- Frequently Asked Questions: https://nexoratechno-code.web.app/faq
+- Engineering Guides: https://nexoratechno-code.web.app/guides
+- Technical Interview Preparation: https://nexoratechno-code.web.app/guides/technical-interview-prep
+- Effective Coding Practice: https://nexoratechno-code.web.app/guides/effective-coding-practice
+- AI Mock Interview Guide: https://nexoratechno-code.web.app/guides/ai-mock-interview-guide
+- Privacy Policy: https://nexoratechno-code.web.app/privacy
+- Terms & Conditions: https://nexoratechno-code.web.app/terms
+
+## Publisher Information
+- Organization: Nexora Techno
+- Corporate Website: https://nexoratechno.in
+- Note: CodeXpertAI is an educational software product developed by Nexora Techno. Nexora Techno is a technology software and development enterprise, not a search engine or AI foundation model provider.

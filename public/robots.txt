@@ -1,0 +1,97 @@
+# CodeXpertAI Robots Governance
+# Product: CodeXpertAI
+# Attribution: A product of Nexora Techno (https://nexoratechno.in)
+# Canonical Base: https://nexoratechno-code.web.app
+
+User-agent: *
+Allow: /
+Allow: /about
+Allow: /faq
+Allow: /guides
+Allow: /guides/*
+Allow: /privacy
+Allow: /terms
+Allow: /login
+Allow: /signup
+Allow: /*.js$
+Allow: /*.css$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.svg$
+Allow: /*.ico$
+
+# Authenticated & Private Routes (Excluded from indexing)
+Disallow: /dashboard
+Disallow: /dashboard/*
+Disallow: /codelab/problems/*
+Disallow: /codelab/workspace/*
+Disallow: /codelab/submissions
+Disallow: /codelab/submissions/*
+Disallow: /codelab/challenges
+Disallow: /interview/setup
+Disallow: /interview/live
+Disallow: /interview/live/*
+Disallow: /interview/session/*
+Disallow: /interview/report/*
+Disallow: /interview/simulator
+Disallow: /learning-paths
+Disallow: /profile
+Disallow: /profile/*
+Disallow: /admin
+Disallow: /admin/*
+
+# Dedicated AI Search Discovery Agents
+User-agent: Google-Extended
+Allow: /
+Allow: /about
+Allow: /faq
+Allow: /guides
+Allow: /guides/*
+Disallow: /dashboard
+Disallow: /codelab/workspace/*
+Disallow: /interview/session/*
+Disallow: /interview/report/*
+Disallow: /admin
+Disallow: /profile
+
+User-agent: GPTBot
+Allow: /
+Allow: /about
+Allow: /faq
+Allow: /guides
+Allow: /guides/*
+Disallow: /dashboard
+Disallow: /codelab/workspace/*
+Disallow: /interview/session/*
+Disallow: /interview/report/*
+Disallow: /admin
+Disallow: /profile
+
+User-agent: ClaudeBot
+Allow: /
+Allow: /about
+Allow: /faq
+Allow: /guides
+Allow: /guides/*
+Disallow: /dashboard
+Disallow: /codelab/workspace/*
+Disallow: /interview/session/*
+Disallow: /interview/report/*
+Disallow: /admin
+Disallow: /profile
+
+User-agent: PerplexityBot
+Allow: /
+Allow: /about
+Allow: /faq
+Allow: /guides
+Allow: /guides/*
+Disallow: /dashboard
+Disallow: /codelab/workspace/*
+Disallow: /interview/session/*
+Disallow: /interview/report/*
+Disallow: /admin
+Disallow: /profile
+
+# Sitemap Location
+Sitemap: https://nexoratechno-code.web.app/sitemap.xml

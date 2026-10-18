@@ -40,12 +40,12 @@ export const Navbar: React.FC = () => {
         <Link to={user ? '/dashboard' : '/'} className={styles.brand}>
           <img
             src="/codexpertai-logo.png"
-            alt="CodeXpertai"
+            alt="CodeXpertAI"
             className={styles.brandLogoImg}
           />
           <div className={styles.brandText}>
-            <span className={styles.brandTitle}>CodeXpert<span className={styles.brandAccent}>ai</span></span>
-            <span className={styles.brandSubtitle}>CodeLab & InterviewAI</span>
+            <span className={styles.brandTitle}>CodeXpert<span className={styles.brandAccent}>AI</span></span>
+            <span className={styles.brandSubtitle}>A Product of Nexora Techno</span>
           </div>
         </Link>
 
@@ -69,6 +69,9 @@ export const Navbar: React.FC = () => {
                 <Compass size={15} />
                 <span>Learning Paths</span>
               </NavLink>
+              <NavLink to="/guides" className={navLinkClass}>
+                <span>Guides</span>
+              </NavLink>
               {isAdmin && (
                 <NavLink to="/admin" className={navLinkClass}>
                   <ShieldAlert size={15} />
@@ -85,6 +88,15 @@ export const Navbar: React.FC = () => {
               <NavLink to="/interview" className={navLinkClass}>
                 <Sparkles size={15} />
                 <span>InterviewAI</span>
+              </NavLink>
+              <NavLink to="/about" className={navLinkClass}>
+                <span>About</span>
+              </NavLink>
+              <NavLink to="/faq" className={navLinkClass}>
+                <span>FAQ</span>
+              </NavLink>
+              <NavLink to="/guides" className={navLinkClass}>
+                <span>Guides</span>
               </NavLink>
             </>
           )}
@@ -238,6 +250,27 @@ export const Navbar: React.FC = () => {
                 >
                   <Sparkles size={16} />
                   <span>InterviewAI Preparation</span>
+                </NavLink>
+                <NavLink
+                  to="/about"
+                  className={navLinkClass}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <span>About CodeXpertAI</span>
+                </NavLink>
+                <NavLink
+                  to="/faq"
+                  className={navLinkClass}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <span>Frequently Asked Questions</span>
+                </NavLink>
+                <NavLink
+                  to="/guides"
+                  className={navLinkClass}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <span>Engineering Guides</span>
                 </NavLink>
                 <div className={styles.mobileAuthActions}>
                   <Link

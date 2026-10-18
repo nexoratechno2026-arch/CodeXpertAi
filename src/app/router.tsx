@@ -26,6 +26,10 @@ import { AdminPage } from '@/features/admin/AdminPage';
 import { NotFoundPage } from '@/features/notfound/NotFoundPage';
 import { PrivacyPolicyPage } from '@/features/legal/PrivacyPolicyPage';
 import { TermsPage } from '@/features/legal/TermsPage';
+import { AboutPage } from '@/features/about/AboutPage';
+import { FAQPage } from '@/features/faq/FAQPage';
+import { GuidesHubPage } from '@/features/guides/GuidesHubPage';
+import { GuideDetailPage } from '@/features/guides/GuideDetailPage';
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +40,23 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <LandingPage />,
+      },
+      // Public discovery & educational routes
+      {
+        path: 'about',
+        element: <AboutPage />,
+      },
+      {
+        path: 'faq',
+        element: <FAQPage />,
+      },
+      {
+        path: 'guides',
+        element: <GuidesHubPage />,
+      },
+      {
+        path: 'guides/:slug',
+        element: <GuideDetailPage />,
       },
       // Public legal routes
       {
