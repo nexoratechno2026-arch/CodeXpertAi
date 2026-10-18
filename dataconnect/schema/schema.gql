@@ -1,0 +1,41 @@
+type Student @table {
+  name: String!
+  email: String!
+  universityName: String!
+  avatarUrl: String
+  bio: String
+}
+
+type Course @table {
+  courseCode: String!
+  courseName: String!
+  instructorName: String!
+  syllabusUrl: String
+}
+
+type Enrollment @table(key: ["student", "course"]) {
+  student: Student!
+  course: Course!
+}
+
+type Assignment @table {
+  title: String!
+  dueDate: Timestamp!
+  course: Course!
+  description: String
+  maxPoints: Int
+}
+
+type StudyGroup @table {
+  groupName: String!
+  course: Course!
+  meetingLink: String
+  description: String
+}
+
+type Resource @table {
+  title: String!
+  fileUrl: String!
+  course: Course!
+  uploadedBy: Student!
+}

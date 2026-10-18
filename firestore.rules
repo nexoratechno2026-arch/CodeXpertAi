@@ -1,0 +1,178 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null && request.auth.uid != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && (
+        request.auth.token.role == 'admin' ||
+        request.auth.token.email == 'nexoratechno2026@gmail.com' ||
+        (exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin')
+      );
+    }
+
+    // Default deny for unmatched collections
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Users Collection
+    match /users/{userId} {
+      allow read: if isOwner(userId) || isAdmin();
+      
+      // User can create their own profile as student role only
+      allow create: if isOwner(userId)
+        && request.resource.data.role == 'student'
+        && request.resource.data.uid == userId
+        && request.resource.data.email == request.auth.token.email;
+
+      // User can update whitelisted fields only; role, stats, email, uid are immutable
+      allow update: if (isOwner(userId)
+        && !request.resource.data.diff(resource.data).affectedKeys()
+            .hasAny(['role', 'stats', 'recommendedLevel', 'uid', 'email', 'createdAt']))
+        || isAdmin();
+
+      allow delete: if isAdmin();
+
+      // Progress & Skill records subcollection
+      match /progress/{topicId} {
+        allow read: if isOwner(userId) || isAdmin();
+        allow write: if isAdmin(); // Written by trusted backend execution trigger
+      }
+
+      match /skillRecords/{topicId} {
+        allow read: if isOwner(userId) || isAdmin();
+        allow write: if isAdmin();
+      }
+
+      // Notifications subcollection
+      match /notifications/{notificationId} {
+        allow read, write: if isOwner(userId) || isAdmin();
+      }
+
+      // Study Plans subcollection
+      match /studyPlans/{planId} {
+        allow read, write: if isOwner(userId) || isAdmin();
+      }
+
+      // Recommendation Feedback & Deferrals
+      match /recommendationFeedback/{recId} {
+        allow read, write: if isOwner(userId) || isAdmin();
+      }
+
+      // Phase 9: Gamification & Challenge Completions
+      match /gamification/{docId} {
+        allow read, write: if isOwner(userId) || isAdmin();
+      }
+
+      match /challengeCompletions/{challengeId} {
+        allow read, write: if isOwner(userId) || isAdmin();
+      }
+    }
+
+    // Problems Catalog
+    match /problems/{problemId} {
+      // Students can read published problems only; admins can read drafts
+      allow read: if isAuthenticated() && (resource.data.isPublished == true || isAdmin());
+      allow write: if isAdmin();
+
+      // Test Cases Subcollection: Hidden tests protected from client queries
+      match /testCases/{testCaseId} {
+        allow read: if isAuthenticated() && (resource.data.isPublic == true || isAdmin());
+        allow write: if isAdmin();
+      }
+
+      // Private Reference Solutions Subcollection: Strictly restricted to server / admins
+      match /solutions/{solutionId} {
+        allow read, write: if isAdmin();
+      }
+    }
+
+    // Submissions Collection
+    match /submissions/{submissionId} {
+      // Students can read only their own submissions
+      allow read: if isAuthenticated() && (resource.data.userId == request.auth.uid || isAdmin());
+      
+      // Submissions are created and evaluated exclusively via trusted backend (Cloud Functions / Admin SDK)
+      // Client direct writes are denied to prevent verdict/runtime forgery
+      allow write: if isAdmin();
+    }
+
+    // Topics Catalog
+    match /topics/{topicId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+
+    // Learning Paths Catalog
+    match /learningPaths/{pathId} {
+      allow read: if isAuthenticated() && (resource.data.isPublished == true || isAdmin());
+      allow write: if isAdmin();
+    }
+
+    // Interview Templates & Sessions (InterviewAI Module)
+    match /interviewTemplates/{templateId} {
+      allow read: if isAuthenticated() && (resource.data.isPublished == true || isAdmin());
+      allow write: if isAdmin();
+
+      // System Prompts & Rubrics: Completely blocked from all clients
+      match /adminConfig/{configId} {
+        allow read, write: if isAdmin();
+      }
+    }
+
+    match /interviewSessions/{sessionId} {
+      allow read: if isAuthenticated() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow write: if isAdmin(); // Written exclusively by Interview AI backend
+
+      match /messages/{messageId} {
+        allow read: if isAuthenticated() && (get(/databases/$(database)/documents/interviewSessions/$(sessionId)).data.userId == request.auth.uid || isAdmin());
+        allow write: if isAdmin();
+      }
+
+      match /evaluationReport/{reportId} {
+        allow read: if isAuthenticated() && (get(/databases/$(database)/documents/interviewSessions/$(sessionId)).data.userId == request.auth.uid || isAdmin());
+        allow write: if isAdmin();
+      }
+    }
+
+    // Phase 5: Unified Skill Intelligence, Analytics & Recommendations
+    match /student_analytics/{userId} {
+      allow read: if isOwner(userId) || isAdmin();
+      // Client writes blocked to prevent mastery tampering; derived server-side or via secure background jobs
+      allow write: if isAdmin();
+    }
+
+    match /skills/{skillId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+
+    match /recommendations/{recommendationId} {
+      allow read: if isAuthenticated() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow write: if isAdmin();
+    }
+
+    // Platform Configuration
+    match /platformConfig/{configId} {
+      allow read: if isAuthenticated() && (configId == 'general' || isAdmin());
+      allow write: if isAdmin();
+    }
+
+    // Administrative Audit Log: Strictly admin-only read, written by Admin SDK
+    match /adminAuditLog/{logId} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+  }
+}

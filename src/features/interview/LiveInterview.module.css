@@ -1,0 +1,1052 @@
+.container {
+  min-height: calc(100vh - 64px);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Pre-Flight Device Check Stage
+────────────────────────────────────────────────────────────── */
+.preflightWrap {
+  max-width: 860px;
+  margin: var(--space-8) auto;
+  padding: 0 var(--space-4);
+  width: 100%;
+}
+
+.preflightHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-6);
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: #FFFFFF;
+  margin: 0 0 var(--space-1) 0;
+}
+
+.subtitle {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.diagnosticCard {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.stageGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+}
+
+@media (max-width: 768px) {
+  .stageGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.previewBox {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000000;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border-default);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.previewVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1); /* Mirror camera */
+}
+
+.noVideoPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-text-tertiary);
+  font-size: var(--text-sm);
+  padding: var(--space-4);
+  text-align: center;
+}
+
+.deviceStatusRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.deviceItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(39, 39, 42, 0.4);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-subtle);
+}
+
+.deviceMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+}
+
+.audioMeter {
+  width: 100%;
+  height: 6px;
+  background: #27272A;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-top: var(--space-2);
+}
+
+.audioMeterFill {
+  height: 100%;
+  background: linear-gradient(90deg, #10B981, #3B82F6);
+  transition: width 0.08s ease;
+}
+
+.personaSelectRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.personaCard {
+  border: 1px solid var(--color-border-default);
+  background: rgba(24, 24, 27, 0.6);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  transition: all var(--transition-fast);
+}
+
+.personaCardActive {
+  border-color: #3B82F6;
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.errorBanner {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  margin-top: var(--space-4);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  color: #FCA5A5;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+.troubleList {
+  margin: var(--space-2) 0 0 var(--space-4);
+  padding: 0;
+  font-size: var(--text-xs);
+  color: #FECACA;
+}
+
+.actionRow {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border-subtle);
+  flex-wrap: wrap;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Live Interview Room Stage
+────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   Live Interview Room Stage
+────────────────────────────────────────────────────────────── */
+.liveRoom {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 64px);
+  width: 100%;
+  background: #09090C;
+  overflow: hidden;
+  position: relative;
+}
+
+.fullscreenActive {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999999 !important;
+  background: #09090C !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+.roomTopBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-4);
+  background-color: rgba(14, 14, 18, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border-default);
+  height: 52px;
+  flex-shrink: 0;
+  z-index: 30;
+}
+
+.roomTopLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.roomTopRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.liveBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #EF4444;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.liveBadgeText {
+  display: inline;
+}
+
+.liveDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #EF4444;
+  animation: pulse 1.5s infinite;
+}
+
+.roomRoleText {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+}
+
+.headerBadges {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sessionTimerBox {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8125rem;
+  color: #93C5FD;
+  font-weight: 600;
+}
+
+.headerActionBtn {
+  font-size: 0.75rem !important;
+  height: 30px !important;
+  padding: 0 10px !important;
+}
+
+.headerBtnLabel {
+  display: inline;
+}
+
+.endCallBtn {
+  font-size: 0.75rem !important;
+  height: 30px !important;
+  padding: 0 10px !important;
+  background: #DC2626 !important;
+  color: #FFFFFF !important;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.roomGrid {
+  display: flex;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: calc(100% - 52px);
+}
+
+.stageArea {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #060608;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.canvasContainer {
+  flex: 1;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #060608;
+  overflow: hidden;
+}
+
+.avatarCanvas {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+/* Question Banner Floating at Top Center of Video Stage */
+.stageQuestionBanner {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 620px;
+  width: calc(100% - 440px);
+  background: rgba(12, 16, 26, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  border-radius: var(--radius-lg);
+  padding: 12px 18px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7), 0 0 20px rgba(59, 130, 246, 0.12);
+  z-index: 12;
+  text-align: center;
+  animation: fadeInDown 0.3s ease;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translate(-50%, -10px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+.stageQuestionMeta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 5px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: #3B82F6;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  flex-wrap: wrap;
+}
+
+.stageQuestionText {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* Interviewer Persona Tag on Video Stage */
+.interviewerOverlayTag {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  background: rgba(12, 14, 20, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 6px 14px 6px 8px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 14;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  max-width: 220px;
+}
+
+.interviewerAvatarCircle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #2563EB;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+}
+
+.interviewerNameText {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  white-space: nowrap;
+}
+
+.interviewerSubtext {
+  font-size: 0.625rem;
+  color: #93C5FD;
+  white-space: nowrap;
+}
+
+.statusIndicatorPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  font-size: 0.625rem;
+  font-weight: 600;
+}
+
+.statusSpeaking {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60A5FA;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+}
+
+.statusListening {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34D399;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.statusThinking {
+  background: rgba(168, 85, 247, 0.2);
+  color: #C084FC;
+  border: 1px solid rgba(168, 85, 247, 0.4);
+}
+
+/* Candidate Picture-in-Picture */
+.pipStudentCam {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 176px;
+  aspect-ratio: 16 / 9;
+  background: #121216;
+  border: 2px solid rgba(59, 130, 246, 0.55);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(59, 130, 246, 0.2);
+  z-index: 14;
+  transition: all 0.2s ease;
+}
+
+.pipVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1);
+}
+
+.pipPausedPlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #A1A1AA;
+  font-size: 0.625rem;
+}
+
+.pipOverlay {
+  position: absolute;
+  bottom: 4px;
+  left: 6px;
+  right: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.625rem;
+  color: #FFFFFF;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+}
+
+.pipUserName {
+  max-width: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pipAudioMeterBar {
+  width: 32px;
+  height: 4px;
+  background: #3F3F46;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+/* Floating Closed Captions Overlay (Toggleable [CC]) */
+.closedCaptionsBox {
+  position: absolute;
+  bottom: 86px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 680px;
+  width: calc(100% - 32px);
+  background: rgba(10, 10, 14, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-full);
+  padding: 8px 20px;
+  color: #F4F4F5;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  text-align: center;
+  z-index: 16;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  animation: fadeIn 0.2s ease;
+}
+
+.captionSpeakerName {
+  font-weight: 700;
+  color: #60A5FA;
+  margin-right: 6px;
+}
+
+.interimCaptionText {
+  color: #93C5FD;
+  font-style: italic;
+}
+
+/* Bottom Floating Executive Meeting Dock */
+.controlBar {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 58px;
+  background: rgba(14, 16, 23, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-full);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.75), 0 0 16px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: 0 18px;
+  z-index: 25;
+}
+
+.controlIconBtn {
+  font-size: 0.75rem !important;
+  height: 38px !important;
+  padding: 0 14px !important;
+  border-radius: var(--radius-full) !important;
+}
+
+.controlBtnText {
+  display: inline;
+}
+
+.doneSpeakingBtn {
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%) !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  box-shadow: 0 0 16px rgba(37, 99, 235, 0.5) !important;
+  padding: 0 18px !important;
+  height: 40px !important;
+}
+
+.doneSpeakingBtnActive {
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%) !important;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.6) !important;
+  animation: pulseButton 1.8s infinite;
+}
+
+.doneBtnDesktop {
+  display: inline;
+}
+
+.doneBtnMobile {
+  display: none;
+}
+
+@keyframes pulseButton {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+/* Optional Slide-out Transcript & Notes Drawer */
+.transcriptDrawer {
+  width: 380px;
+  background: #111115;
+  border-left: 1px solid var(--color-border-default);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  z-index: 25;
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.5);
+  animation: slideLeft 0.25s ease;
+}
+
+@keyframes slideLeft {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@media (max-width: 960px) {
+  .transcriptDrawer {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 360px;
+  }
+}
+
+.drawerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--color-border-subtle);
+  background: #141419;
+}
+
+.drawerTitle {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.transcriptPanel {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.transcriptMsg {
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.transcriptInterviewer {
+  background: #181820;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  color: #E4E4E7;
+  align-self: flex-start;
+  max-width: 92%;
+}
+
+.transcriptStudent {
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  color: #FFFFFF;
+  align-self: flex-end;
+  max-width: 92%;
+}
+
+.liveInterimBox {
+  padding: var(--space-3);
+  background: rgba(24, 24, 28, 0.6);
+  border: 1px dashed rgba(59, 130, 246, 0.4);
+  border-radius: var(--radius-md);
+  font-size: 0.8125rem;
+  color: #93C5FD;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.inputFallbackArea {
+  padding: var(--space-3);
+  border-top: 1px solid var(--color-border-subtle);
+  background: #121216;
+}
+
+.typingForm {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.textInput {
+  flex: 1;
+  background: #18181B;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+  color: #FFFFFF;
+  font-size: var(--text-xs);
+  outline: none;
+}
+
+.textInput:focus {
+  border-color: #3B82F6;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Readiness Checklist & Full-Screen Overlay
+────────────────────────────────────────────────────────────── */
+.readinessSection {
+  margin-top: var(--space-6);
+  border-top: 1px solid var(--color-border-subtle);
+  padding-top: var(--space-5);
+}
+
+.readinessGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.checkItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(24, 24, 27, 0.4);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.8125rem;
+}
+
+.checkItemMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.checkLabel {
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.checkDetail {
+  font-size: 0.6875rem;
+  color: #A1A1AA;
+}
+
+.pausedModalBackdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(9, 9, 11, 0.88);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: var(--space-4);
+  animation: fadeIn 0.2s ease;
+}
+
+.pausedCard {
+  background: #18181D;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
+}
+
+.toastNotice {
+  position: absolute;
+  top: 64px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(30, 41, 59, 0.95);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  color: #E2E8F0;
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  font-size: 0.75rem;
+  z-index: 40;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: fadeInDown 0.25s ease;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Responsive & Mobile Viewport Rules (< 768px and < 480px)
+────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .roomTopBar {
+    height: 46px;
+    padding: 0 8px;
+  }
+
+  .roomTopLeft {
+    gap: 6px;
+  }
+
+  .roomRoleText {
+    max-width: 105px;
+    font-size: 0.75rem;
+  }
+
+  .headerBadges {
+    display: none;
+  }
+
+  .sessionTimerBox {
+    font-size: 0.75rem;
+    gap: 3px;
+  }
+
+  .headerActionBtn {
+    height: 28px !important;
+    padding: 0 6px !important;
+  }
+
+  .headerBtnLabel {
+    display: none;
+  }
+
+  .endCallBtn {
+    height: 28px !important;
+    padding: 0 8px !important;
+  }
+
+  /* Video Stage Components on Mobile */
+  .interviewerOverlayTag {
+    top: 8px;
+    left: 8px;
+    padding: 4px 8px;
+    gap: 6px;
+    max-width: 135px;
+  }
+
+  .interviewerNameText {
+    font-size: 0.75rem;
+  }
+
+  .interviewerSubtext {
+    display: none;
+  }
+
+  .pipStudentCam {
+    top: 8px;
+    right: 8px;
+    width: 86px;
+    height: 56px;
+    aspect-ratio: auto;
+    border-width: 1.5px;
+  }
+
+  .pipOverlay {
+    padding: 1px 4px;
+    font-size: 0.55rem;
+  }
+
+  .pipAudioMeterBar {
+    width: 22px;
+  }
+
+  /* Clear collision: Question banner sits at top 70px below tag & camera */
+  .stageQuestionBanner {
+    top: 70px;
+    left: 8px;
+    right: 8px;
+    transform: none;
+    width: auto;
+    max-width: 100%;
+    padding: 8px 10px;
+  }
+
+  .stageQuestionMeta {
+    gap: 6px;
+    font-size: 0.625rem;
+    margin-bottom: 3px;
+  }
+
+  .stageQuestionText {
+    font-size: 0.78125rem;
+    line-height: 1.35;
+    max-height: 50px;
+    overflow-y: auto;
+  }
+
+  .closedCaptionsBox {
+    bottom: 64px;
+    width: calc(100% - 16px);
+    padding: 6px 8px;
+    font-size: 0.72rem;
+    line-height: 1.3;
+    max-height: 48px;
+    overflow: hidden;
+  }
+
+  .controlBar {
+    height: 56px;
+    padding: 0 6px;
+    gap: 5px;
+  }
+
+  .controlIconBtn {
+    height: 34px !important;
+    padding: 0 8px !important;
+    min-width: 34px !important;
+  }
+
+  .controlBtnText {
+    display: none;
+  }
+
+  .doneSpeakingBtn {
+    height: 36px !important;
+    padding: 0 12px !important;
+    font-size: 0.75rem !important;
+  }
+
+  .doneBtnDesktop {
+    display: none;
+  }
+
+  .doneBtnMobile {
+    display: inline;
+  }
+
+  /* Pre-flight adjustments on Mobile */
+  .preflightWrap {
+    margin: var(--space-4) auto;
+    padding: 0 var(--space-3);
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .subtitle {
+    font-size: 0.78125rem;
+  }
+
+  .stageGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .personaSelectRow {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+  }
+
+  .actionRow {
+    flex-direction: column-reverse;
+    gap: var(--space-2);
+  }
+
+  .actionRow button,
+  .actionRow a {
+    width: 100%;
+  }
+
+  .checkItem {
+    padding: 6px 8px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .roomRoleText {
+    display: none;
+  }
+
+  .stageQuestionBanner {
+    top: 66px;
+    padding: 6px 8px;
+  }
+
+  .stageQuestionText {
+    font-size: 0.75rem;
+  }
+
+  .controlBar {
+    gap: 3px;
+  }
+
+  .controlIconBtn {
+    height: 32px !important;
+    padding: 0 6px !important;
+    min-width: 32px !important;
+  }
+
+  .doneSpeakingBtn {
+    height: 34px !important;
+    padding: 0 10px !important;
+    font-size: 0.71875rem !important;
+  }
+}
+
+
