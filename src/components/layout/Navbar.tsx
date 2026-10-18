@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import {
   Code2,
   Sparkles,
@@ -10,6 +10,9 @@ import {
   Menu,
   X,
   Compass,
+  BookOpen,
+  Info,
+  HelpCircle,
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Badge } from '@/components/ui/Badge';
@@ -19,7 +22,28 @@ import styles from './Navbar.module.css';
 export const Navbar: React.FC = () => {
   const { user, profile, isAdmin, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Automatically close mobile menu on route changes
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  // Close on Escape key press
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMobileMenuOpen(false);
+      }
+    };
+    if (mobileMenuOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [mobileMenuOpen]);
 
   const handleLogout = async () => {
     try {
@@ -33,11 +57,14 @@ export const Navbar: React.FC = () => {
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     `${styles.navLink} ${isActive ? styles.navLinkActive : ''}`;
 
+  const mobileNavLinkClass = ({ isActive }: { isActive: boolean }) =>
+    `${styles.mobileNavLink} ${isActive ? styles.mobileNavLinkActive : ''}`;
+
   return (
-    <header className={styles.navbar}>
+    <header className={styles.navbar} role="banner">
       <div className={styles.container}>
         {/* Brand */}
-        <Link to={user ? '/dashboard' : '/'} className={styles.brand}>
+        <Link to={user ? '/dashboard' : '/'} className={styles.brand} aria-label="CodeXpertAI Homepage">
           <img
             src="/codexpertai-logo.png"
             alt="CodeXpertAI"
@@ -45,7 +72,7 @@ export const Navbar: React.FC = () => {
           />
           <div className={styles.brandText}>
             <span className={styles.brandTitle}>CodeXpert<span className={styles.brandAccent}>AI</span></span>
-            <span className={styles.brandSubtitle}>A Product of Nexora Techno</span>
+            <span className={styles.brandSubtitle}>A product of Nexora Techno</span>
           </div>
         </Link>
 
@@ -70,6 +97,7 @@ export const Navbar: React.FC = () => {
                 <span>Learning Paths</span>
               </NavLink>
               <NavLink to="/guides" className={navLinkClass}>
+                <BookOpen size={15} />
                 <span>Guides</span>
               </NavLink>
               {isAdmin && (
@@ -90,12 +118,15 @@ export const Navbar: React.FC = () => {
                 <span>InterviewAI</span>
               </NavLink>
               <NavLink to="/about" className={navLinkClass}>
+                <Info size={15} />
                 <span>About</span>
               </NavLink>
               <NavLink to="/faq" className={navLinkClass}>
+                <HelpCircle size={15} />
                 <span>FAQ</span>
               </NavLink>
               <NavLink to="/guides" className={navLinkClass}>
+                <BookOpen size={15} />
                 <span>Guides</span>
               </NavLink>
             </>
@@ -145,85 +176,67 @@ export const Navbar: React.FC = () => {
             className={styles.mobileToggle}
             onClick={() => setMobileMenuOpen((prev) => !prev)}
             aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer Dropdown */}
       {mobileMenuOpen && (
-        <div className={styles.mobileMenu}>
+        <div className={styles.mobileMenu} role="region" aria-label="Mobile Navigation">
           <nav className={styles.mobileNav}>
             {user ? (
               <>
-                <NavLink
-                  to="/dashboard"
-                  className={navLinkClass}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
+                <span className={styles.mobileSectionHeader}>Core Modules</span>
+                <NavLink to="/dashboard" className={mobileNavLinkClass}>
                   <LayoutDashboard size={16} />
                   <span>Dashboard</span>
                 </NavLink>
-                <NavLink
-                  to="/codelab"
-                  className={navLinkClass}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
+                <NavLink to="/codelab" className={mobileNavLinkClass}>
                   <Code2 size={16} />
                   <span>CodeLab Practice</span>
                 </NavLink>
-                <NavLink
-                  to="/codelab/problems"
-                  className={navLinkClass}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
+                <NavLink to="/codelab/problems" className={mobileNavLinkClass} style={{ paddingLeft: '24px' }}>
                   <span className={styles.subInd}>↳</span> Problems Library
                 </NavLink>
-                <NavLink
-                  to="/codelab/submissions"
-                  className={navLinkClass}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
+                <NavLink to="/codelab/submissions" className={mobileNavLinkClass} style={{ paddingLeft: '24px' }}>
                   <span className={styles.subInd}>↳</span> Submissions
                 </NavLink>
-                <NavLink
-                  to="/interview"
-                  className={navLinkClass}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
+                <NavLink to="/interview" className={mobileNavLinkClass}>
                   <Sparkles size={16} />
-                  <span>InterviewAI</span>
+                  <span>InterviewAI Hub</span>
                 </NavLink>
-                <NavLink
-                  to="/interview/setup"
-                  className={navLinkClass}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
+                <NavLink to="/interview/setup" className={mobileNavLinkClass} style={{ paddingLeft: '24px' }}>
                   <span className={styles.subInd}>↳</span> Interview Setup
                 </NavLink>
-                <NavLink
-                  to="/learning-paths"
-                  className={navLinkClass}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
+                <NavLink to="/learning-paths" className={mobileNavLinkClass}>
                   <Compass size={16} />
                   <span>Learning Paths</span>
                 </NavLink>
-                <NavLink
-                  to="/profile"
-                  className={navLinkClass}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
+
+                <span className={styles.mobileSectionHeader}>Resources</span>
+                <NavLink to="/about" className={mobileNavLinkClass}>
+                  <Info size={16} />
+                  <span>About CodeXpertAI</span>
+                </NavLink>
+                <NavLink to="/faq" className={mobileNavLinkClass}>
+                  <HelpCircle size={16} />
+                  <span>Frequently Asked Questions</span>
+                </NavLink>
+                <NavLink to="/guides" className={mobileNavLinkClass}>
+                  <BookOpen size={16} />
+                  <span>Engineering Guides</span>
+                </NavLink>
+
+                <span className={styles.mobileSectionHeader}>Account</span>
+                <NavLink to="/profile" className={mobileNavLinkClass}>
                   <User size={16} />
                   <span>Student Profile</span>
                 </NavLink>
                 {isAdmin && (
-                  <NavLink
-                    to="/admin"
-                    className={navLinkClass}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
+                  <NavLink to="/admin" className={mobileNavLinkClass}>
                     <ShieldAlert size={16} />
                     <span>Admin Portal</span>
                   </NavLink>
@@ -235,56 +248,35 @@ export const Navbar: React.FC = () => {
               </>
             ) : (
               <>
-                <NavLink
-                  to="/codelab"
-                  className={navLinkClass}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
+                <span className={styles.mobileSectionHeader}>Modules</span>
+                <NavLink to="/codelab" className={mobileNavLinkClass}>
                   <Code2 size={16} />
                   <span>CodeLab Practice</span>
                 </NavLink>
-                <NavLink
-                  to="/interview"
-                  className={navLinkClass}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
+                <NavLink to="/interview" className={mobileNavLinkClass}>
                   <Sparkles size={16} />
                   <span>InterviewAI Preparation</span>
                 </NavLink>
-                <NavLink
-                  to="/about"
-                  className={navLinkClass}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
+
+                <span className={styles.mobileSectionHeader}>Resources</span>
+                <NavLink to="/about" className={mobileNavLinkClass}>
+                  <Info size={16} />
                   <span>About CodeXpertAI</span>
                 </NavLink>
-                <NavLink
-                  to="/faq"
-                  className={navLinkClass}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
+                <NavLink to="/faq" className={mobileNavLinkClass}>
+                  <HelpCircle size={16} />
                   <span>Frequently Asked Questions</span>
                 </NavLink>
-                <NavLink
-                  to="/guides"
-                  className={navLinkClass}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
+                <NavLink to="/guides" className={mobileNavLinkClass}>
+                  <BookOpen size={16} />
                   <span>Engineering Guides</span>
                 </NavLink>
+
                 <div className={styles.mobileAuthActions}>
-                  <Link
-                    to="/login"
-                    className={styles.loginBtn}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
+                  <Link to="/login" className={styles.loginBtn}>
                     Log In
                   </Link>
-                  <Link
-                    to="/signup"
-                    className={styles.signupBtn}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
+                  <Link to="/signup" className={styles.signupBtn}>
                     Sign Up
                   </Link>
                 </div>
