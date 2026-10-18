@@ -21,7 +21,7 @@ import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Badge } from '@/components/ui/Badge';
 import { SKILL_LEVELS, SkillLevel, getSkillLevelLabel } from '@/types/skill';
-import { ProgrammingLanguage } from '@/types/user';
+import { ProgrammingLanguage, formatProgrammingLanguage } from '@/types/user';
 import styles from './Profile.module.css';
 
 const LANGUAGES: { id: ProgrammingLanguage; label: string }[] = [
@@ -201,7 +201,7 @@ export const ProfilePage: React.FC = () => {
               </div>
               <div className={styles.metaLine}>
                 <Code2 size={14} />
-                <span>Default Language: {preferredLanguage.toUpperCase()}</span>
+                <span>Default Language: {formatProgrammingLanguage(preferredLanguage)}</span>
               </div>
             </div>
 

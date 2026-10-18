@@ -16,6 +16,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Spinner } from '@/components/ui/Spinner';
 import { Submission } from '@/types/codelab';
 import { getSubmissionsForUser } from '@/services/codelabService';
+import { formatProgrammingLanguage } from '@/types/user';
 import { useAuth } from '@/contexts/AuthContext';
 import styles from './Codelab.module.css';
 
@@ -210,7 +211,7 @@ export const SubmissionsPage: React.FC = () => {
                       <td>{getVerdictBadge(sub.verdict)}</td>
                       <td>
                         <Badge variant="default" size="sm">
-                          {(sub.language || 'UNKNOWN').toUpperCase()}
+                          {formatProgrammingLanguage(sub.language)}
                         </Badge>
                       </td>
                       <td>

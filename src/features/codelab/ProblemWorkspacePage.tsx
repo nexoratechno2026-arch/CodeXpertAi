@@ -28,7 +28,7 @@ import {
   ExecutionResult,
   Submission,
 } from '@/types/codelab';
-import { ProgrammingLanguage } from '@/types/user';
+import { ProgrammingLanguage, formatProgrammingLanguage } from '@/types/user';
 import { getSkillLevelLabel } from '@/types/skill';
 import { useAuth } from '@/contexts/AuthContext';
 import styles from './Workspace.module.css';
@@ -373,7 +373,7 @@ export const ProblemWorkspacePage: React.FC = () => {
                           {sub.verdict?.replace('_', ' ') || 'Pending'}
                         </div>
                         <div className={styles.subMeta}>
-                          {sub.language} • {new Date(sub.submittedAt).toLocaleTimeString()}
+                          {formatProgrammingLanguage(sub.language)} • {new Date(sub.submittedAt).toLocaleTimeString()}
                         </div>
                       </div>
                       <div style={{ textAlign: 'right', fontFamily: 'var(--font-mono)', fontSize: '0.6875rem' }}>
@@ -425,7 +425,7 @@ export const ProblemWorkspacePage: React.FC = () => {
               >
                 {problem.supportedLanguages.map((lang) => (
                   <option key={lang} value={lang}>
-                    {lang.toUpperCase()}
+                    {formatProgrammingLanguage(lang)}
                   </option>
                 ))}
               </select>

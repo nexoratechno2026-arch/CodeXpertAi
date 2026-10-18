@@ -12,6 +12,23 @@ export type ProgrammingLanguage =
   | 'go'
   | 'sql';
 
+export const PROGRAMMING_LANGUAGE_LABELS: Record<ProgrammingLanguage, string> = {
+  cpp: 'C++',
+  python: 'Python',
+  javascript: 'JavaScript',
+  typescript: 'TypeScript',
+  java: 'Java',
+  c: 'C',
+  go: 'Go',
+  sql: 'SQL',
+};
+
+export const formatProgrammingLanguage = (lang?: string): string => {
+  if (!lang) return '';
+  const key = lang.toLowerCase() as ProgrammingLanguage;
+  return PROGRAMMING_LANGUAGE_LABELS[key] || lang.toUpperCase();
+};
+
 export interface UserStats {
   totalSubmissions: number;
   acceptedSubmissions: number;
