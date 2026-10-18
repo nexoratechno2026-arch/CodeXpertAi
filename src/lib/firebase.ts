@@ -60,20 +60,6 @@ if (status.isConfigured) {
     auth = getAuth(app);
     db = getFirestore(app);
 
-    // Initialize Firebase App Check if site key is configured
-    const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_ENTERPRISE_SITE_KEY;
-    if (recaptchaSiteKey && typeof window !== 'undefined' && !status.usingEmulators) {
-      try {
-        const { initializeAppCheck, ReCaptchaEnterpriseProvider } = await import('firebase/app-check');
-        initializeAppCheck(app, {
-          provider: new ReCaptchaEnterpriseProvider(recaptchaSiteKey),
-          isTokenAutoRefreshEnabled: true,
-        });
-        console.info('[Firebase] App Check initialized with reCAPTCHA Enterprise');
-      } catch (appCheckErr) {
-        console.warn('[Firebase] App Check initialization failed:', appCheckErr);
-      }
-    }
 
     // Connect to emulators if configured or requested in dev
     if (status.usingEmulators) {
