@@ -11,6 +11,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
   padding-bottom: var(--space-4);
   border-bottom: 1px solid var(--color-border-subtle);
 }
@@ -136,7 +138,14 @@
   gap: var(--space-2);
   border-bottom: 1px solid var(--color-border-default);
   margin-bottom: var(--space-4);
-  flex-wrap: wrap;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.tabsBar::-webkit-scrollbar {
+  display: none;
 }
 
 .tabBtn {
@@ -152,6 +161,8 @@
   align-items: center;
   gap: var(--space-2);
   transition: all var(--transition-fast);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .tabBtn:hover {
@@ -282,5 +293,58 @@
   border-radius: var(--radius-sm);
   font-size: var(--text-xs);
   font-family: var(--font-mono);
+}
+
+@media (max-width: 640px) {
+  .tabsBar {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin-left: -4px;
+    margin-right: -4px;
+    padding-bottom: 2px;
+  }
+
+  .tabsBar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tabBtn {
+    white-space: nowrap;
+    padding: var(--space-2) var(--space-3);
+    font-size: 0.8125rem;
+    flex-shrink: 0;
+  }
+
+  .searchBar {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .searchBar button {
+    width: 100%;
+  }
+
+  .statsRow {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .adminTable th,
+  .adminTable td {
+    padding: var(--space-2) var(--space-3);
+    font-size: 0.6875rem;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .statsRow {
+    grid-template-columns: 1fr;
+  }
+
+  .title {
+    font-size: 1.35rem;
+  }
 }
 

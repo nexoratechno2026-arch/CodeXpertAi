@@ -196,3 +196,22 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 640px) {
+  .aboutPage {
+    padding: var(--space-4) 0 var(--space-8);
+  }
+
+  .headerCard {
+    padding: var(--space-5) var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .sectionCard {
+    padding: var(--space-4);
+  }
+
+  .sideBox {
+    padding: var(--space-4);
+  }
+}

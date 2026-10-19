@@ -75,7 +75,7 @@
 
 .guidesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: var(--space-6);
   margin-top: var(--space-6);
 }
@@ -203,4 +203,24 @@
   margin: var(--space-6) 0;
   font-size: var(--text-sm);
   color: var(--color-text-primary);
+}
+
+@media (max-width: 640px) {
+  .guidesPage {
+    padding: var(--space-4) 0 var(--space-8);
+  }
+
+  .headerCard {
+    padding: var(--space-5) var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .guideCard {
+    padding: var(--space-4);
+  }
+
+  .articleBody {
+    padding: var(--space-4);
+    font-size: var(--text-sm);
+  }
 }

@@ -112,6 +112,13 @@
   .mobilePaneSwitcher {
     display: flex;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+
+  .mobilePaneSwitcher::-webkit-scrollbar {
+    display: none;
   }
 
   .workspaceRoot {
@@ -145,6 +152,30 @@
   .problemTitle {
     font-size: var(--text-sm);
     max-width: 140px;
+  }
+}
+
+@media (max-width: 640px) {
+  .workspaceHeader {
+    padding: var(--space-2) var(--space-3);
+    gap: var(--space-2);
+  }
+
+  .headerRight {
+    gap: var(--space-2);
+  }
+
+  .headerBadges {
+    display: none;
+  }
+
+  .problemTitle {
+    font-size: var(--text-xs);
+    max-width: 110px;
+  }
+
+  .paneContent {
+    padding: var(--space-3);
   }
 }
 

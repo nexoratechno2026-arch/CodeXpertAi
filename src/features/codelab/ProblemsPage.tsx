@@ -175,7 +175,11 @@ export const ProblemsPage: React.FC = () => {
             <Spinner size="md" label="Loading problems..." />
           </div>
         ) : (
-          <table className={styles.problemTable}>
+          <>
+            <div className={styles.tableScrollHint}>
+              <span>Swipe horizontally to view all columns →</span>
+            </div>
+            <table className={styles.problemTable}>
             <thead>
               <tr>
                 <th style={{ width: '40%' }}>Problem Title</th>
@@ -275,6 +279,7 @@ export const ProblemsPage: React.FC = () => {
               )}
             </tbody>
           </table>
+          </>
         )}
       </Card>
     </div>

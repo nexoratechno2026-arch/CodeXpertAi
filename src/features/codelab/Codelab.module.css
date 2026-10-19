@@ -317,12 +317,32 @@
 
 /* Table */
 .tableCard {
+  width: 100%;
+  max-width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   border: 1px solid var(--color-border-default);
+}
+
+.tableScrollHint {
+  display: none;
+  font-size: 0.6875rem;
+  color: var(--color-text-tertiary);
+  padding: var(--space-2) var(--space-3);
+  background-color: var(--color-bg-tertiary);
+  border-bottom: 1px solid var(--color-border-subtle);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .tableScrollHint {
+    display: block;
+  }
 }
 
 .problemTable {
   width: 100%;
+  min-width: 620px;
   border-collapse: collapse;
   font-size: var(--text-sm);
   text-align: left;
@@ -495,5 +515,94 @@
   display: flex;
   align-items: center;
   gap: var(--space-2);
+}
+
+@media (max-width: 768px) {
+  .heroBanner {
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .infoCard {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .actionButtons {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .actionButtons a,
+  .actionButtons button {
+    width: 100%;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-3);
+  }
+
+  .searchBox {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .filterDropdowns {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2);
+  }
+
+  .filterDropdowns .select {
+    width: 100%;
+    min-width: 0;
+    text-overflow: ellipsis;
+  }
+
+  .filtersBar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filtersGroup {
+    width: 100%;
+  }
+
+  .filtersGroup .filterSelect {
+    flex: 1;
+  }
+
+  .paginationBar {
+    flex-direction: column;
+    gap: var(--space-3);
+    align-items: center;
+    text-align: center;
+  }
+
+  .topicGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.35rem;
+  }
+
+  .sectionTitle {
+    font-size: 1rem;
+  }
+
+  .levelFilterRow {
+    gap: var(--space-1);
+  }
+
+  .filterChip {
+    padding: var(--space-1) var(--space-3);
+    font-size: 0.7rem;
+  }
 }
 

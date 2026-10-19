@@ -93,6 +93,7 @@
 
   /* ── Layout Dimensions ── */
   --navbar-height: 64px;
+  --header-height: var(--navbar-height);
   --sidebar-width: 260px;
   --max-content-width: 1200px;
 

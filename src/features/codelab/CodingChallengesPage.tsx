@@ -282,7 +282,8 @@ export const CodingChallengesPage: React.FC = () => {
             </Badge>
           </div>
 
-          <table className={styles.leaderboardTable}>
+          <div className={styles.tableWrapper}>
+            <table className={styles.leaderboardTable}>
             <thead>
               <tr>
                 <th style={{ width: '60px' }}>Rank</th>
@@ -335,7 +336,8 @@ export const CodingChallengesPage: React.FC = () => {
                 </tr>
               ))}
             </tbody>
-          </table>
+            </table>
+          </div>
         </Card>
       </div>
     </div>

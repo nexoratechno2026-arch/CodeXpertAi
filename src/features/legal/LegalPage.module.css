@@ -341,6 +341,33 @@
   text-decoration: underline;
 }
 
+@media (max-width: 640px) {
+  .pageContainer {
+    padding: var(--space-4) var(--space-2) var(--space-8);
+  }
+
+  .headerCard {
+    padding: var(--space-5) var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .sectionCard {
+    padding: var(--space-4);
+  }
+
+  .printBtn {
+    display: none;
+  }
+
+  .contactGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media print {
   .breadcrumb,
   .navTabs,

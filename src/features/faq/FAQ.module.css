@@ -177,3 +177,36 @@
 .inlineLink:hover {
   color: #93C5FD;
 }
+
+@media (max-width: 640px) {
+  .faqPage {
+    padding: var(--space-4) 0 var(--space-8);
+  }
+
+  .headerCard {
+    padding: var(--space-5) var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .filterRow {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+
+  .filterRow::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filterBtn {
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding: 6px 12px;
+  }
+
+  .faqItem {
+    padding: var(--space-4);
+  }
+}

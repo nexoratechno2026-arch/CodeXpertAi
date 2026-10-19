@@ -108,7 +108,7 @@
 
 .moduleGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: var(--space-6);
 }
 
@@ -263,16 +263,51 @@
 }
 
 @media (max-width: 640px) {
+  .hero {
+    padding: var(--space-6) 0 var(--space-4);
+  }
+
   .heroTitle {
-    font-size: var(--text-3xl);
+    font-size: clamp(1.75rem, 7vw, 2.25rem);
+    line-height: 1.2;
   }
 
   .heroSubtitle {
-    font-size: var(--text-base);
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-6);
+  }
+
+  .heroCtas {
+    flex-direction: column;
+    width: 100%;
+    gap: var(--space-3);
+  }
+
+  .heroCtas a,
+  .heroCtas button {
+    width: 100%;
   }
 
   .metaRow {
     flex-direction: column;
     gap: var(--space-2);
+  }
+
+  .sectionTitle {
+    font-size: var(--text-2xl);
+  }
+
+  .ctaCard {
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .ctaButtons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .ctaButtons a,
+  .ctaButtons button {
+    width: 100%;
   }
 }

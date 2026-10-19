@@ -368,6 +368,24 @@
     padding: 0 var(--space-3);
   }
 
+  .brandLogoImg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .brandTitle {
+    font-size: 0.9375rem;
+  }
+
+  .authButtons .loginBtn {
+    display: none; /* Log in is prominently placed inside the mobile hamburger menu */
+  }
+
+  .signupBtn {
+    padding: 5px 10px;
+    font-size: 0.75rem;
+  }
+
   .profileInfo {
     display: none;
   }
@@ -381,5 +399,11 @@
 
   .logoutBtn {
     display: none; /* Log out is easily accessible in the mobile menu */
+  }
+}
+
+@media (max-width: 360px) {
+  .signupBtn {
+    display: none; /* Fully streamlined for ultra-narrow phones */
   }
 }

@@ -375,3 +375,45 @@
   }
 }
 
+@media (max-width: 640px) {
+  .pageHeader {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-2);
+  }
+
+  .summaryCard,
+  .accountSecurityCard {
+    padding: var(--space-4) !important;
+  }
+
+  .actionsRow {
+    justify-content: stretch;
+  }
+
+  .actionsRow button {
+    width: 100%;
+  }
+
+  .securityActionRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-3);
+    padding: var(--space-3) 0;
+  }
+
+  .securityActionRow button,
+  .securityActionRow a {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .modalActions {
+    flex-direction: column-reverse;
+  }
+
+  .modalActions button {
+    width: 100%;
+  }
+}
+
