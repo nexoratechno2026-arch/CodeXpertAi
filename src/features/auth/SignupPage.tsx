@@ -13,7 +13,30 @@ import {
   validatePasswordConfirmation,
 } from '@/lib/validation';
 import { mapFirebaseAuthError } from '@/services/authService';
+import type { ProgrammingLanguage } from '@/types/user';
 import styles from './Auth.module.css';
+
+const CAREER_ROLES = [
+  'Full Stack Engineer',
+  'Frontend Developer (React / Web)',
+  'Backend Engineer (Python / Node / Java)',
+  'Data Scientist & AI / ML Specialist',
+  'DevOps & Cloud Infrastructure Engineer',
+  'Mobile App Developer (iOS / Android)',
+  'Systems & Embedded Software Engineer',
+  'Cybersecurity & SecOps Specialist',
+];
+
+const PREFERRED_LANGUAGES: { id: ProgrammingLanguage; label: string }[] = [
+  { id: 'python', label: 'Python 3' },
+  { id: 'javascript', label: 'JavaScript (Node.js)' },
+  { id: 'typescript', label: 'TypeScript' },
+  { id: 'cpp', label: 'C++ (GCC)' },
+  { id: 'java', label: 'Java (OpenJDK)' },
+  { id: 'go', label: 'Go' },
+  { id: 'c', label: 'C (GCC)' },
+  { id: 'sql', label: 'SQL (PostgreSQL / SQLite)' },
+];
 
 export const SignupPage: React.FC = () => {
   const { register, loginWithGoogle } = useAuth();
@@ -23,6 +46,8 @@ export const SignupPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [targetRole, setTargetRole] = useState(CAREER_ROLES[0]);
+  const [preferredLanguage, setPreferredLanguage] = useState<ProgrammingLanguage>('python');
 
   const [nameError, setNameError] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -81,7 +106,10 @@ export const SignupPage: React.FC = () => {
     setIsLoading(true);
 
     try {
-      await register(fullName, email, password);
+      await register(fullName, email, password, {
+        targetRole,
+        preferredLanguage,
+      });
       navigate('/dashboard', { replace: true });
     } catch (err: unknown) {
       console.error('[SignupPage] Registration error:', err);
@@ -217,6 +245,50 @@ export const SignupPage: React.FC = () => {
             required
             disabled={isLoading}
           />
+
+          <div className={styles.fieldGroup}>
+            <label htmlFor="targetRole" className={styles.fieldLabel}>
+              Target Career Role
+            </label>
+            <select
+              id="targetRole"
+              className={styles.select}
+              value={targetRole}
+              onChange={(e) => setTargetRole(e.target.value)}
+              disabled={isLoading}
+            >
+              {CAREER_ROLES.map((role) => (
+                <option key={role} value={role}>
+                  {role}
+                </option>
+              ))}
+            </select>
+            <span className={styles.fieldHelper}>
+              Which tech career are you targeting? Customizes practice paths & mock interviews.
+            </span>
+          </div>
+
+          <div className={styles.fieldGroup}>
+            <label htmlFor="preferredLanguage" className={styles.fieldLabel}>
+              Preferred Programming Language
+            </label>
+            <select
+              id="preferredLanguage"
+              className={styles.select}
+              value={preferredLanguage}
+              onChange={(e) => setPreferredLanguage(e.target.value as ProgrammingLanguage)}
+              disabled={isLoading}
+            >
+              {PREFERRED_LANGUAGES.map((lang) => (
+                <option key={lang.id} value={lang.id}>
+                  {lang.label}
+                </option>
+              ))}
+            </select>
+            <span className={styles.fieldHelper}>
+              Default programming language loaded in the code editor for practice challenges.
+            </span>
+          </div>
 
           <div className={styles.securityNote}>
             <ShieldCheck size={14} />

@@ -6,7 +6,7 @@ import {
   serverTimestamp,
 } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
-import type { UserProfile, ProfileUpdateInput } from '@/types/user';
+import type { UserProfile, ProfileUpdateInput, ProgrammingLanguage } from '@/types/user';
 
 const LOCAL_STORAGE_PROFILE_PREFIX = 'nexora_local_profile_';
 
@@ -14,7 +14,12 @@ export async function createStudentProfile(
   uid: string,
   email: string,
   fullName: string,
-  overrideRole?: 'student' | 'admin'
+  overrideRole?: 'student' | 'admin',
+  initialOptions?: {
+    targetRole?: string;
+    preferredLanguage?: ProgrammingLanguage;
+    selectedLevel?: UserProfile['selectedLevel'];
+  }
 ): Promise<UserProfile> {
   const now = new Date().toISOString();
   const normalizedEmail = email.trim().toLowerCase();
@@ -25,12 +30,14 @@ export async function createStudentProfile(
     fullName: fullName.trim(),
     email: normalizedEmail,
     role: isMasterAdmin ? 'admin' : 'student',
-    selectedLevel: 'beginner',
+    selectedLevel: initialOptions?.selectedLevel || 'beginner',
     recommendedLevel: null,
-    preferredLanguage: 'python',
+    preferredLanguage: initialOptions?.preferredLanguage || 'python',
     completedOnboarding: isMasterAdmin ? true : false,
     bio: isMasterAdmin ? 'Nexora System Administrator' : '',
-    targetRole: isMasterAdmin ? 'Platform Administrator' : 'Software Engineer',
+    targetRole: isMasterAdmin
+      ? 'Platform Administrator'
+      : (initialOptions?.targetRole?.trim() || 'Software Engineer'),
     learningGoals: 'Data Structures & Algorithms, System Design',
     notificationPreferences: {
       emailDigests: true,

@@ -11,7 +11,7 @@ import {
 } from 'firebase/auth';
 import { auth, checkFirebaseConfig } from '@/lib/firebase';
 import { createStudentProfile, getStudentProfile } from './profileService';
-import type { UserProfile } from '@/types/user';
+import type { UserProfile, ProgrammingLanguage } from '@/types/user';
 
 export interface AuthSession {
   user: User | null;
@@ -63,7 +63,12 @@ export function mapFirebaseAuthError(errorCode: string): string {
 export async function registerStudent(
   fullName: string,
   email: string,
-  password: string
+  password: string,
+  initialOptions?: {
+    targetRole?: string;
+    preferredLanguage?: ProgrammingLanguage;
+    selectedLevel?: UserProfile['selectedLevel'];
+  }
 ): Promise<{ user: User; profile: UserProfile }> {
   const config = checkFirebaseConfig();
 
@@ -85,7 +90,13 @@ export async function registerStudent(
   }
 
   // 3. Create the corresponding Student Profile in Firestore
-  const profile = await createStudentProfile(user.uid, user.email || email, fullName);
+  const profile = await createStudentProfile(
+    user.uid,
+    user.email || email,
+    fullName,
+    undefined,
+    initialOptions
+  );
 
   return { user, profile };
 }

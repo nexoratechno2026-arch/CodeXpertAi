@@ -5,6 +5,8 @@
   max-width: var(--max-content-width);
   margin: 0 auto;
   width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .pageHeader {
@@ -15,6 +17,9 @@
   gap: var(--space-4);
   padding-bottom: var(--space-4);
   border-bottom: 1px solid var(--color-border-subtle);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .title {
@@ -22,18 +27,31 @@
   font-weight: var(--weight-bold);
   color: var(--color-text-primary);
   margin-bottom: 2px;
+  word-break: break-word;
 }
 
 .desc {
   font-size: var(--text-sm);
   color: var(--color-text-secondary);
+  word-break: break-word;
 }
 
 .layoutGrid {
   display: grid;
-  grid-template-columns: 320px 1fr;
+  grid-template-columns: 320px minmax(0, 1fr);
   gap: var(--space-6);
   align-items: start;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.leftCol,
+.rightCol {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .summaryCard {
@@ -43,6 +61,11 @@
   text-align: center;
   gap: var(--space-3);
   background-color: var(--color-bg-secondary);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .avatarCircle {
@@ -56,6 +79,7 @@
   justify-content: center;
   color: var(--color-accent);
   margin-bottom: var(--space-2);
+  flex-shrink: 0;
 }
 
 .summaryName {
@@ -63,17 +87,24 @@
   font-weight: var(--weight-bold);
   color: var(--color-text-primary);
   line-height: 1.2;
+  word-break: break-word;
+  max-width: 100%;
 }
 
 .summaryEmail {
   font-size: var(--text-xs);
   color: var(--color-text-secondary);
+  word-break: break-all;
+  max-width: 100%;
 }
 
 .roleRow {
   display: flex;
   gap: var(--space-2);
   margin-top: var(--space-1);
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
 }
 
 .accountMeta {
@@ -81,6 +112,8 @@
   flex-direction: column;
   gap: var(--space-2);
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   padding-top: var(--space-4);
   border-top: 1px solid var(--color-border-subtle);
   margin-top: var(--space-2);
@@ -93,6 +126,8 @@
   font-size: var(--text-xs);
   color: var(--color-text-tertiary);
   text-align: left;
+  flex-wrap: wrap;
+  word-break: break-word;
 }
 
 .metaLine code {
@@ -100,6 +135,7 @@
   background: var(--color-bg-tertiary);
   padding: 1px 4px;
   border-radius: var(--radius-sm);
+  word-break: break-all;
 }
 
 .securityWarning {
@@ -111,6 +147,9 @@
   border-radius: var(--radius-sm);
   margin-top: var(--space-3);
   line-height: 1.4;
+  word-break: break-word;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .sectionHeading {
@@ -120,18 +159,27 @@
   margin-bottom: var(--space-6);
   padding-bottom: var(--space-3);
   border-bottom: 1px solid var(--color-border-subtle);
+  word-break: break-word;
 }
 
 .form {
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .fieldGroup {
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .fieldLabel {
@@ -142,6 +190,10 @@
 
 .readOnlyInput {
   height: 38px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   background-color: var(--color-bg-tertiary);
   border: 1px solid var(--color-border-subtle);
   color: var(--color-text-tertiary);
@@ -152,7 +204,11 @@
 }
 
 .select {
-  height: 38px;
+  height: 40px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   background-color: var(--color-bg-tertiary);
   border: 1px solid var(--color-border-default);
   color: var(--color-text-primary);
@@ -161,6 +217,9 @@
   font-size: var(--text-sm);
   outline: none;
   transition: border-color var(--transition-fast);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .select:focus {
@@ -168,6 +227,10 @@
 }
 
 .textarea {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   background-color: var(--color-bg-tertiary);
   border: 1px solid var(--color-border-default);
   color: var(--color-text-primary);
@@ -371,20 +434,44 @@
 
 @media (max-width: 860px) {
   .layoutGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
   }
 }
 
 @media (max-width: 640px) {
+  .container {
+    gap: var(--space-5);
+  }
+
   .pageHeader {
     flex-direction: column;
-    align-items: stretch;
-    gap: var(--space-2);
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .title {
+    font-size: var(--text-xl);
   }
 
   .summaryCard,
   .accountSecurityCard {
     padding: var(--space-4) !important;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .avatarCircle {
+    width: 64px;
+    height: 64px;
+  }
+
+  .accountMeta {
+    padding-top: var(--space-3);
+  }
+
+  .metaLine {
+    font-size: 0.725rem;
   }
 
   .actionsRow {

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import type { User } from 'firebase/auth';
-import type { UserProfile } from '@/types/user';
+import type { UserProfile, ProgrammingLanguage } from '@/types/user';
 import {
   registerStudent,
   loginStudent,
@@ -20,7 +20,16 @@ export interface AuthContextType {
   isAdmin: boolean;
   login: (email: string, pass: string) => Promise<void>;
   loginWithGoogle: () => Promise<void>;
-  register: (name: string, email: string, pass: string) => Promise<void>;
+  register: (
+    name: string,
+    email: string,
+    pass: string,
+    options?: {
+      targetRole?: string;
+      preferredLanguage?: ProgrammingLanguage;
+      selectedLevel?: UserProfile['selectedLevel'];
+    }
+  ) => Promise<void>;
   logout: () => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
   refreshProfile: () => Promise<void>;
@@ -74,8 +83,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return () => unsubscribe();
   }, [fetchProfile]);
 
-  const handleRegister = async (name: string, email: string, pass: string) => {
-    const { user: newUser, profile: newProfile } = await registerStudent(name, email, pass);
+  const handleRegister = async (
+    name: string,
+    email: string,
+    pass: string,
+    options?: {
+      targetRole?: string;
+      preferredLanguage?: ProgrammingLanguage;
+      selectedLevel?: UserProfile['selectedLevel'];
+    }
+  ) => {
+    const { user: newUser, profile: newProfile } = await registerStudent(name, email, pass, options);
     setUser(newUser);
     setProfile(newProfile);
   };
