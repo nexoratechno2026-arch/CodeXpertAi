@@ -17,12 +17,15 @@ import { FAQ_ENTRIES } from '@/features/faq/FAQPage';
 
 describe('SEO, GEO & AEO Implementation Test Suite', () => {
   describe('1. Brand & Entity Configuration', () => {
-    it('accurately identifies CodeXpertAI as a product of Nexora Techno', () => {
+    it('accurately identifies CodeXpertAI as a product of Nexora Techno with official social and support channels', () => {
       expect(SITE_CONFIG.siteName).toBe('CodeXpertAI');
       expect(SITE_CONFIG.brandName).toBe('CodeXpertAI');
       expect(SITE_CONFIG.corporateName).toBe('Nexora Techno');
       expect(SITE_CONFIG.corporateUrl).toBe('https://nexoratechno.in');
       expect(SITE_CONFIG.primaryDescription).toContain('product of Nexora Techno');
+      expect(SITE_CONFIG.instagramHandle).toBe('codexpertai_nt');
+      expect(SITE_CONFIG.instagramUrl).toBe('https://www.instagram.com/codexpertai_nt/');
+      expect(SITE_CONFIG.supportEmail).toBe('support@codexpertai.in');
     });
 
     it('generates normalized canonical URLs without trailing slash (except root)', () => {
@@ -45,22 +48,25 @@ describe('SEO, GEO & AEO Implementation Test Suite', () => {
   });
 
   describe('2. Schema.org JSON-LD Structured Data Generators', () => {
-    it('produces valid Organization schema for Nexora Techno', () => {
+    it('produces valid Organization schema for Nexora Techno with Instagram and support contactPoint', () => {
       const org = getOrganizationSchema();
       expect(org['@context']).toBe('https://schema.org');
       expect(org['@type']).toBe('Organization');
       expect(org.name).toBe('Nexora Techno');
       expect(org.url).toBe('https://nexoratechno.in');
       expect(org['@id']).toBe('https://nexoratechno.in/#organization');
+      expect(org.sameAs).toContain('https://www.instagram.com/codexpertai_nt/');
+      expect(org.contactPoint.email).toBe('support@codexpertai.in');
     });
 
-    it('produces valid WebSite schema linking CodeXpertAI to Nexora Techno as publisher', () => {
+    it('produces valid WebSite schema linking CodeXpertAI to Nexora Techno as publisher and Instagram sameAs', () => {
       const site = getWebSiteSchema();
       expect(site['@context']).toBe('https://schema.org');
       expect(site['@type']).toBe('WebSite');
       expect(site.name).toBe('CodeXpertAI');
       expect(site.publisher.name).toBe('Nexora Techno');
       expect(site.publisher.url).toBe('https://nexoratechno.in');
+      expect(site.sameAs).toContain('https://www.instagram.com/codexpertai_nt/');
     });
 
     it('produces valid SoftwareApplication schema with no fabricated ratings', () => {
@@ -139,7 +145,7 @@ describe('SEO, GEO & AEO Implementation Test Suite', () => {
       expect(content).toContain('Disallow: /interview/session/*');
       expect(content).toContain('Disallow: /interview/report/*');
       expect(content).toContain('Disallow: /admin');
-      expect(content).toContain('Sitemap: https://nexoratechno-code.web.app/sitemap.xml');
+      expect(content).toContain('Sitemap: https://www.codexpertai.in/sitemap.xml');
     });
 
     it('sitemap.xml exists and contains only canonical public routes', () => {
@@ -147,13 +153,13 @@ describe('SEO, GEO & AEO Implementation Test Suite', () => {
       expect(fs.existsSync(sitemapPath)).toBe(true);
 
       const xml = fs.readFileSync(sitemapPath, 'utf-8');
-      expect(xml).toContain('<loc>https://nexoratechno-code.web.app/</loc>');
-      expect(xml).toContain('<loc>https://nexoratechno-code.web.app/about</loc>');
-      expect(xml).toContain('<loc>https://nexoratechno-code.web.app/faq</loc>');
-      expect(xml).toContain('<loc>https://nexoratechno-code.web.app/guides</loc>');
-      expect(xml).toContain('<loc>https://nexoratechno-code.web.app/guides/technical-interview-prep</loc>');
-      expect(xml).toContain('<loc>https://nexoratechno-code.web.app/privacy</loc>');
-      expect(xml).toContain('<loc>https://nexoratechno-code.web.app/terms</loc>');
+      expect(xml).toContain('<loc>https://www.codexpertai.in/</loc>');
+      expect(xml).toContain('<loc>https://www.codexpertai.in/about</loc>');
+      expect(xml).toContain('<loc>https://www.codexpertai.in/faq</loc>');
+      expect(xml).toContain('<loc>https://www.codexpertai.in/guides</loc>');
+      expect(xml).toContain('<loc>https://www.codexpertai.in/guides/technical-interview-prep</loc>');
+      expect(xml).toContain('<loc>https://www.codexpertai.in/privacy</loc>');
+      expect(xml).toContain('<loc>https://www.codexpertai.in/terms</loc>');
 
       // Strict privacy assertions: NEVER index authenticated user routes
       expect(xml).not.toContain('/dashboard');
@@ -219,4 +225,47 @@ describe('SEO, GEO & AEO Implementation Test Suite', () => {
       }
     });
   });
+
+  describe('5. Vercel Deployment & SPA Configuration', () => {
+    const rootDir = path.resolve(__dirname, '../../');
+
+    it('vercel.json exists with permanent redirect, security headers, and asset caching', () => {
+      const vercelPath = path.join(rootDir, 'vercel.json');
+      expect(fs.existsSync(vercelPath)).toBe(true);
+
+      const vercelConfig = JSON.parse(fs.readFileSync(vercelPath, 'utf-8'));
+      expect(vercelConfig.cleanUrls).toBe(true);
+      expect(vercelConfig.trailingSlash).toBe(false);
+
+      // Verify apex to www redirect
+      const hostRedirect = vercelConfig.redirects.find((r: { destination: string }) =>
+        r.destination.includes('https://www.codexpertai.in')
+      );
+      expect(hostRedirect).toBeDefined();
+      expect(hostRedirect.permanent).toBe(true);
+
+      // Verify security headers
+      const globalHeader = vercelConfig.headers.find((h: { source: string }) => h.source === '/(.*)');
+      expect(globalHeader).toBeDefined();
+      const headerKeys = globalHeader.headers.map((h: { key: string }) => h.key);
+      expect(headerKeys).toContain('X-Content-Type-Options');
+      expect(headerKeys).toContain('X-Frame-Options');
+      expect(headerKeys).toContain('Strict-Transport-Security');
+    });
+
+    it('prerender script exists and generates static HTML files for public routes', () => {
+      const prerenderScript = path.join(rootDir, 'scripts/prerender.js');
+      expect(fs.existsSync(prerenderScript)).toBe(true);
+
+      const distDir = path.join(rootDir, 'dist');
+      if (fs.existsSync(distDir)) {
+        expect(fs.existsSync(path.join(distDir, 'index.html'))).toBe(true);
+        expect(fs.existsSync(path.join(distDir, 'about/index.html'))).toBe(true);
+        expect(fs.existsSync(path.join(distDir, 'faq/index.html'))).toBe(true);
+        expect(fs.existsSync(path.join(distDir, 'guides/index.html'))).toBe(true);
+        expect(fs.existsSync(path.join(distDir, '404.html'))).toBe(true);
+      }
+    });
+  });
 });
+

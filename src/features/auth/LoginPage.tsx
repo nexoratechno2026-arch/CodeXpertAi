@@ -116,11 +116,22 @@ export const LoginPage: React.FC = () => {
 
   return (
     <div className={styles.authContainer}>
-      <SEOHead noindex={true} title="Sign In — CodeXpertAI" description="Sign in to your CodeXpertAI account." />
+      <SEOHead
+        noindex={true}
+        title="Sign In – CodeXpertAI"
+        description="Sign in to your CodeXpertAI account to continue coding practice and mock interviews."
+        canonicalPath="/login"
+      />
       <Card className={styles.authCard}>
         <div className={styles.header}>
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
-            <img src="/codexpertai-logo.png" alt="CodeXpertAI" style={{ height: '48px', width: 'auto', objectFit: 'contain' }} />
+            <img
+              src="/codexpertai-logo.png"
+              alt="CodeXpertAI Logo"
+              width={48}
+              height={48}
+              style={{ height: '48px', width: 'auto', objectFit: 'contain' }}
+            />
           </div>
           <h1 className={styles.title}>Sign in to CodeXpert<span style={{ color: '#3B82F6' }}>AI</span></h1>
           <p className={styles.subtitle}>

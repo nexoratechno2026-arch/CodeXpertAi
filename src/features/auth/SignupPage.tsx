@@ -130,11 +130,22 @@ export const SignupPage: React.FC = () => {
 
   return (
     <div className={styles.authContainer}>
-      <SEOHead noindex={true} title="Create Account — CodeXpertAI" description="Create your CodeXpertAI student account." />
+      <SEOHead
+        noindex={true}
+        title="Create Student Account – CodeXpertAI"
+        description="Create your CodeXpertAI student account to start coding practice and AI technical interviews."
+        canonicalPath="/signup"
+      />
       <Card className={styles.authCard}>
         <div className={styles.header}>
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
-            <img src="/codexpertai-logo.png" alt="CodeXpertAI" style={{ height: '48px', width: 'auto', objectFit: 'contain' }} />
+            <img
+              src="/codexpertai-logo.png"
+              alt="CodeXpertAI Logo"
+              width={48}
+              height={48}
+              style={{ height: '48px', width: 'auto', objectFit: 'contain' }}
+            />
           </div>
           <h1 className={styles.title}>Create your Account</h1>
           <p className={styles.subtitle}>

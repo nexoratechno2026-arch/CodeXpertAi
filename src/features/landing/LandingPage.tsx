@@ -48,8 +48,8 @@ export const LandingPage: React.FC = () => {
   return (
     <div className={styles.landing}>
       <SEOHead
-        title="CodeXpertAI — Coding Practice &amp; AI Mock Interviews"
-        description="Practice coding problems, execute code, review test results, track your submissions, and prepare for technical interviews with AI-guided mock interviews on CodeXpertAI, a product of Nexora Techno."
+        title="CodeXpertAI – Coding Practice &amp; AI Mock Interviews"
+        description="Practice coding problems and prepare for technical interviews with CodeXpertAI. Improve your programming skills and build confidence for your next opportunity."
         canonicalPath="/"
         jsonLd={[orgSchema, siteSchema, softwareSchema, faqSchema]}
       />

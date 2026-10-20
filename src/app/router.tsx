@@ -1,28 +1,15 @@
+import React, { Suspense, lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import { AppShell } from '@/components/layout/AppShell';
 import { ProtectedRoute } from '@/features/auth/ProtectedRoute';
 import { PublicOnlyRoute } from '@/features/auth/PublicOnlyRoute';
 import { AdminRoute } from '@/features/auth/AdminRoute';
+import { Spinner } from '@/components/ui/Spinner';
 
-// Pages
+// Lightweight Public Pages (Direct imports for immediate discovery and crawling)
 import { LandingPage } from '@/features/landing/LandingPage';
 import { LoginPage } from '@/features/auth/LoginPage';
 import { SignupPage } from '@/features/auth/SignupPage';
-import { DashboardPage } from '@/features/dashboard/DashboardPage';
-import { CodelabOverviewPage } from '@/features/codelab/CodelabOverviewPage';
-import { ProblemsPage } from '@/features/codelab/ProblemsPage';
-import { ProblemWorkspacePage } from '@/features/codelab/ProblemWorkspacePage';
-import { SubmissionsPage } from '@/features/codelab/SubmissionsPage';
-import { InterviewOverviewPage } from '@/features/interview/InterviewOverviewPage';
-import { InterviewSetupPage } from '@/features/interview/InterviewSetupPage';
-import { InterviewSessionPage } from '@/features/interview/InterviewSessionPage';
-import { InterviewReportPage } from '@/features/interview/InterviewReportPage';
-import { LiveInterviewPage } from '@/features/interview/LiveInterviewPage';
-import { LearningPathsPage } from '@/features/learning/LearningPathsPage';
-import { CodingChallengesPage } from '@/features/codelab/CodingChallengesPage';
-import { InterviewSimulatorPage } from '@/features/interview/InterviewSimulatorPage';
-import { ProfilePage } from '@/features/profile/ProfilePage';
-import { AdminPage } from '@/features/admin/AdminPage';
 import { NotFoundPage } from '@/features/notfound/NotFoundPage';
 import { PrivacyPolicyPage } from '@/features/legal/PrivacyPolicyPage';
 import { TermsPage } from '@/features/legal/TermsPage';
@@ -30,6 +17,35 @@ import { AboutPage } from '@/features/about/AboutPage';
 import { FAQPage } from '@/features/faq/FAQPage';
 import { GuidesHubPage } from '@/features/guides/GuidesHubPage';
 import { GuideDetailPage } from '@/features/guides/GuideDetailPage';
+
+// Heavy & Authenticated Routes (Lazy loaded on-demand to optimize Core Web Vitals)
+const DashboardPage = lazy(() => import('@/features/dashboard/DashboardPage').then(m => ({ default: m.DashboardPage })));
+const CodelabOverviewPage = lazy(() => import('@/features/codelab/CodelabOverviewPage').then(m => ({ default: m.CodelabOverviewPage })));
+const ProblemsPage = lazy(() => import('@/features/codelab/ProblemsPage').then(m => ({ default: m.ProblemsPage })));
+const ProblemWorkspacePage = lazy(() => import('@/features/codelab/ProblemWorkspacePage').then(m => ({ default: m.ProblemWorkspacePage })));
+const SubmissionsPage = lazy(() => import('@/features/codelab/SubmissionsPage').then(m => ({ default: m.SubmissionsPage })));
+const CodingChallengesPage = lazy(() => import('@/features/codelab/CodingChallengesPage').then(m => ({ default: m.CodingChallengesPage })));
+const InterviewOverviewPage = lazy(() => import('@/features/interview/InterviewOverviewPage').then(m => ({ default: m.InterviewOverviewPage })));
+const InterviewSetupPage = lazy(() => import('@/features/interview/InterviewSetupPage').then(m => ({ default: m.InterviewSetupPage })));
+const InterviewSessionPage = lazy(() => import('@/features/interview/InterviewSessionPage').then(m => ({ default: m.InterviewSessionPage })));
+const InterviewReportPage = lazy(() => import('@/features/interview/InterviewReportPage').then(m => ({ default: m.InterviewReportPage })));
+const LiveInterviewPage = lazy(() => import('@/features/interview/LiveInterviewPage').then(m => ({ default: m.LiveInterviewPage })));
+const InterviewSimulatorPage = lazy(() => import('@/features/interview/InterviewSimulatorPage').then(m => ({ default: m.InterviewSimulatorPage })));
+const LearningPathsPage = lazy(() => import('@/features/learning/LearningPathsPage').then(m => ({ default: m.LearningPathsPage })));
+const ProfilePage = lazy(() => import('@/features/profile/ProfilePage').then(m => ({ default: m.ProfilePage })));
+const AdminPage = lazy(() => import('@/features/admin/AdminPage').then(m => ({ default: m.AdminPage })));
+
+const SuspenseLoader: React.FC = () => (
+  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh', width: '100%' }}>
+    <Spinner size="lg" label="Loading..." />
+  </div>
+);
+
+const withSuspense = (Component: React.ComponentType) => (
+  <Suspense fallback={<SuspenseLoader />}>
+    <Component />
+  </Suspense>
+);
 
 export const router = createBrowserRouter([
   {
@@ -90,7 +106,7 @@ export const router = createBrowserRouter([
         path: 'dashboard',
         element: (
           <ProtectedRoute>
-            <DashboardPage />
+            {withSuspense(DashboardPage)}
           </ProtectedRoute>
         ),
       },
@@ -98,7 +114,7 @@ export const router = createBrowserRouter([
         path: 'codelab',
         element: (
           <ProtectedRoute>
-            <CodelabOverviewPage />
+            {withSuspense(CodelabOverviewPage)}
           </ProtectedRoute>
         ),
       },
@@ -106,7 +122,7 @@ export const router = createBrowserRouter([
         path: 'codelab/problems',
         element: (
           <ProtectedRoute>
-            <ProblemsPage />
+            {withSuspense(ProblemsPage)}
           </ProtectedRoute>
         ),
       },
@@ -114,7 +130,7 @@ export const router = createBrowserRouter([
         path: 'codelab/problems/:slug',
         element: (
           <ProtectedRoute>
-            <ProblemWorkspacePage />
+            {withSuspense(ProblemWorkspacePage)}
           </ProtectedRoute>
         ),
       },
@@ -122,7 +138,7 @@ export const router = createBrowserRouter([
         path: 'codelab/workspace/:slug',
         element: (
           <ProtectedRoute>
-            <ProblemWorkspacePage />
+            {withSuspense(ProblemWorkspacePage)}
           </ProtectedRoute>
         ),
       },
@@ -130,7 +146,7 @@ export const router = createBrowserRouter([
         path: 'codelab/submissions',
         element: (
           <ProtectedRoute>
-            <SubmissionsPage />
+            {withSuspense(SubmissionsPage)}
           </ProtectedRoute>
         ),
       },
@@ -138,7 +154,7 @@ export const router = createBrowserRouter([
         path: 'codelab/challenges',
         element: (
           <ProtectedRoute>
-            <CodingChallengesPage />
+            {withSuspense(CodingChallengesPage)}
           </ProtectedRoute>
         ),
       },
@@ -146,7 +162,7 @@ export const router = createBrowserRouter([
         path: 'interview',
         element: (
           <ProtectedRoute>
-            <InterviewOverviewPage />
+            {withSuspense(InterviewOverviewPage)}
           </ProtectedRoute>
         ),
       },
@@ -154,7 +170,7 @@ export const router = createBrowserRouter([
         path: 'interview/simulator',
         element: (
           <ProtectedRoute>
-            <InterviewSimulatorPage />
+            {withSuspense(InterviewSimulatorPage)}
           </ProtectedRoute>
         ),
       },
@@ -162,7 +178,7 @@ export const router = createBrowserRouter([
         path: 'interview/setup',
         element: (
           <ProtectedRoute>
-            <InterviewSetupPage />
+            {withSuspense(InterviewSetupPage)}
           </ProtectedRoute>
         ),
       },
@@ -170,7 +186,7 @@ export const router = createBrowserRouter([
         path: 'interview/live',
         element: (
           <ProtectedRoute>
-            <LiveInterviewPage />
+            {withSuspense(LiveInterviewPage)}
           </ProtectedRoute>
         ),
       },
@@ -178,7 +194,7 @@ export const router = createBrowserRouter([
         path: 'interview/session/:id',
         element: (
           <ProtectedRoute>
-            <InterviewSessionPage />
+            {withSuspense(InterviewSessionPage)}
           </ProtectedRoute>
         ),
       },
@@ -186,7 +202,7 @@ export const router = createBrowserRouter([
         path: 'interview/report/:id',
         element: (
           <ProtectedRoute>
-            <InterviewReportPage />
+            {withSuspense(InterviewReportPage)}
           </ProtectedRoute>
         ),
       },
@@ -194,7 +210,7 @@ export const router = createBrowserRouter([
         path: 'learning-paths',
         element: (
           <ProtectedRoute>
-            <LearningPathsPage />
+            {withSuspense(LearningPathsPage)}
           </ProtectedRoute>
         ),
       },
@@ -202,7 +218,7 @@ export const router = createBrowserRouter([
         path: 'profile',
         element: (
           <ProtectedRoute>
-            <ProfilePage />
+            {withSuspense(ProfilePage)}
           </ProtectedRoute>
         ),
       },
@@ -212,7 +228,7 @@ export const router = createBrowserRouter([
         path: 'admin',
         element: (
           <AdminRoute>
-            <AdminPage />
+            {withSuspense(AdminPage)}
           </AdminRoute>
         ),
       },

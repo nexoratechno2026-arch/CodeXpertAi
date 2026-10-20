@@ -18,8 +18,8 @@ export const PrivacyPolicyPage: React.FC = () => {
   return (
     <div className={styles.pageContainer}>
       <SEOHead
-        title="Privacy Policy — CodeXpertAI"
-        description="Official privacy policy governing CodeXpertAI, a product of Nexora Techno. How we collect, process, and protect developer and student data."
+        title="Privacy Policy – CodeXpertAI"
+        description="Read the official CodeXpertAI privacy policy by Nexora Techno. Understand how we collect, store, and protect student and developer data."
         canonicalPath="/privacy"
         jsonLd={[breadcrumbs]}
       />
@@ -391,8 +391,17 @@ export const PrivacyPolicyPage: React.FC = () => {
                 <div className={styles.contactItem}>
                   <div className={styles.contactLabel}>Email Support</div>
                   <div className={styles.contactValue}>
-                    <a href="mailto:support@codexpertai.com" className={styles.contactLink}>
-                      support@codexpertai.com
+                    <a href="mailto:support@codexpertai.in" className={styles.contactLink}>
+                      support@codexpertai.in
+                    </a>
+                  </div>
+                </div>
+
+                <div className={styles.contactItem}>
+                  <div className={styles.contactLabel}>Instagram Updates</div>
+                  <div className={styles.contactValue}>
+                    <a href="https://www.instagram.com/codexpertai_nt/" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
+                      @codexpertai_nt
                     </a>
                   </div>
                 </div>
@@ -400,8 +409,8 @@ export const PrivacyPolicyPage: React.FC = () => {
                 <div className={styles.contactItem}>
                   <div className={styles.contactLabel}>Official Website</div>
                   <div className={styles.contactValue}>
-                    <a href="https://codexpertai.com" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
-                      https://codexpertai.com
+                    <a href="https://www.codexpertai.in" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
+                      https://www.codexpertai.in
                     </a>
                   </div>
                 </div>
@@ -409,8 +418,8 @@ export const PrivacyPolicyPage: React.FC = () => {
                 <div className={styles.contactItem}>
                   <div className={styles.contactLabel}>Privacy Contact / Grievance Officer</div>
                   <div className={styles.contactValue}>
-                    <a href="mailto:grievance@codexpertai.com" className={styles.contactLink}>
-                      grievance@codexpertai.com
+                    <a href="mailto:support@codexpertai.in" className={styles.contactLink}>
+                      support@codexpertai.in
                     </a>
                   </div>
                 </div>

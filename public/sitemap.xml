@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Homepage -->
   <url>
-    <loc>https://nexoratechno-code.web.app/</loc>
+    <loc>https://www.codexpertai.in/</loc>
     <lastmod>2026-10-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -10,7 +10,7 @@
 
   <!-- About CodeXpertAI & Nexora Techno -->
   <url>
-    <loc>https://nexoratechno-code.web.app/about</loc>
+    <loc>https://www.codexpertai.in/about</loc>
     <lastmod>2026-10-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -18,7 +18,7 @@
 
   <!-- Frequently Asked Questions -->
   <url>
-    <loc>https://nexoratechno-code.web.app/faq</loc>
+    <loc>https://www.codexpertai.in/faq</loc>
     <lastmod>2026-10-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -26,7 +26,7 @@
 
   <!-- Educational Resources Hub -->
   <url>
-    <loc>https://nexoratechno-code.web.app/guides</loc>
+    <loc>https://www.codexpertai.in/guides</loc>
     <lastmod>2026-10-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -34,7 +34,7 @@
 
   <!-- Guide: Technical Coding Interview Preparation -->
   <url>
-    <loc>https://nexoratechno-code.web.app/guides/technical-interview-prep</loc>
+    <loc>https://www.codexpertai.in/guides/technical-interview-prep</loc>
     <lastmod>2026-10-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -42,7 +42,7 @@
 
   <!-- Guide: Effective Coding Practice & Test Analysis -->
   <url>
-    <loc>https://nexoratechno-code.web.app/guides/effective-coding-practice</loc>
+    <loc>https://www.codexpertai.in/guides/effective-coding-practice</loc>
     <lastmod>2026-10-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -50,7 +50,7 @@
 
   <!-- Guide: How AI-Guided Mock Interviews Work -->
   <url>
-    <loc>https://nexoratechno-code.web.app/guides/ai-mock-interview-guide</loc>
+    <loc>https://www.codexpertai.in/guides/ai-mock-interview-guide</loc>
     <lastmod>2026-10-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -58,7 +58,7 @@
 
   <!-- Legal: Privacy Policy -->
   <url>
-    <loc>https://nexoratechno-code.web.app/privacy</loc>
+    <loc>https://www.codexpertai.in/privacy</loc>
     <lastmod>2026-10-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -66,7 +66,7 @@
 
   <!-- Legal: Terms & Conditions -->
   <url>
-    <loc>https://nexoratechno-code.web.app/terms</loc>
+    <loc>https://www.codexpertai.in/terms</loc>
     <lastmod>2026-10-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

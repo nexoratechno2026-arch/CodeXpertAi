@@ -178,16 +178,24 @@ export const FAQ_ENTRIES: FAQEntry[] = [
     category: 'general',
     question: 'How can users report a problem or contact support?',
     directAnswer:
-      'Users can report technical bugs, submit platform feedback, or reach developer support directly via the Nexora Techno corporate portal.',
+      'Users can contact developer support by emailing support@codexpertai.in, connecting via Instagram @codexpertai_nt, or visiting the Nexora Techno corporate portal.',
     plainDetail:
-      'Visit https://nexoratechno.in to access official contact channels, support documentation, and corporate inquiries.',
+      'Send technical queries or bug reports to support@codexpertai.in. For official announcements and updates, follow @codexpertai_nt on Instagram (https://www.instagram.com/codexpertai_nt/). You can also visit https://nexoratechno.in for corporate inquiries.',
     detail: (
       <p>
-        Visit{' '}
+        Send technical questions, bug reports, or platform feedback directly to{' '}
+        <a href="mailto:support@codexpertai.in" className={styles.inlineLink}>
+          support@codexpertai.in
+        </a>
+        . Follow official product updates and engineering tips on Instagram at{' '}
+        <a href="https://www.instagram.com/codexpertai_nt/" target="_blank" rel="noopener noreferrer" className={styles.inlineLink}>
+          @codexpertai_nt <ExternalLink size={11} style={{ display: 'inline' }} />
+        </a>
+        . For institutional partnerships and corporate inquiries, visit{' '}
         <a href="https://nexoratechno.in" target="_blank" rel="noopener noreferrer" className={styles.inlineLink}>
-          https://nexoratechno.in <ExternalLink size={11} style={{ display: 'inline' }} />
-        </a>{' '}
-        to access official contact channels, support documentation, and corporate inquiries.
+          Nexora Techno <ExternalLink size={11} style={{ display: 'inline' }} />
+        </a>
+        .
       </p>
     ),
   },
@@ -215,8 +223,8 @@ export const FAQPage: React.FC = () => {
   return (
     <div className={styles.faqPage}>
       <SEOHead
-        title="Frequently Asked Questions (FAQ) — CodeXpertAI"
-        description="Clear, direct answers to common questions about CodeXpertAI, CodeLab coding practice, InterviewAI technical mock interviews, and Nexora Techno attribution."
+        title="Frequently Asked Questions – CodeXpertAI"
+        description="Find answers to common questions about CodeXpertAI, CodeLab coding challenges, InterviewAI mock interview simulations, and platform features."
         canonicalPath="/faq"
         jsonLd={[breadcrumbData, faqSchemaData]}
       />

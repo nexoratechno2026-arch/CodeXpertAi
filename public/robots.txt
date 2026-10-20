@@ -1,7 +1,7 @@
 # CodeXpertAI Robots Governance
 # Product: CodeXpertAI
 # Attribution: A product of Nexora Techno (https://nexoratechno.in)
-# Canonical Base: https://nexoratechno-code.web.app
+# Canonical Base: https://www.codexpertai.in
 
 User-agent: *
 Allow: /
@@ -17,8 +17,11 @@ Allow: /*.js$
 Allow: /*.css$
 Allow: /*.png$
 Allow: /*.jpg$
+Allow: /*.jpeg$
 Allow: /*.svg$
 Allow: /*.ico$
+Allow: /*.webp$
+Allow: /*.avif$
 
 # Authenticated & Private Routes (Excluded from indexing)
 Disallow: /dashboard
@@ -94,4 +97,4 @@ Disallow: /admin
 Disallow: /profile
 
 # Sitemap Location
-Sitemap: https://nexoratechno-code.web.app/sitemap.xml
+Sitemap: https://www.codexpertai.in/sitemap.xml

@@ -11,6 +11,8 @@ import {
   Layers,
   ArrowRight,
   ShieldCheck,
+  Mail,
+  Instagram,
 } from 'lucide-react';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { Badge } from '@/components/ui/Badge';
@@ -29,8 +31,8 @@ export const AboutPage: React.FC = () => {
   return (
     <div className={styles.aboutPage}>
       <SEOHead
-        title="About CodeXpertAI — Unified Developer Platform Created by Nexora Techno"
-        description="Learn about CodeXpertAI, a unified developer platform combining structured coding practice with AI-guided mock interviews. Created by Nexora Techno."
+        title="About CodeXpertAI – Developer Practice Platform by Nexora Techno"
+        description="Discover CodeXpertAI, an engineering practice and AI mock interview platform developed by Nexora Techno for students, developers, and job seekers."
         canonicalPath="/about"
         jsonLd={[breadcrumbData, softwareData]}
       />
@@ -247,8 +249,42 @@ export const AboutPage: React.FC = () => {
             <div className={styles.sideBox}>
               <h3 className={styles.sideBoxTitle}>Contact &amp; Support</h3>
               <p style={{ fontSize: '0.8125rem', color: '#9CA3AF', lineHeight: 1.6, margin: '0 0 12px 0' }}>
-                Questions regarding platform access, bug reports, feature feedback, or institutional partnerships can be submitted directly through Nexora Techno:
+                Questions regarding platform access, bug reports, feature feedback, or institutional inquiries:
               </p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '16px' }}>
+                <a
+                  href="mailto:support@codexpertai.in"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    color: '#60A5FA',
+                    fontSize: '0.8125rem',
+                    textDecoration: 'none',
+                    fontWeight: 500,
+                  }}
+                >
+                  <Mail size={14} />
+                  <span>support@codexpertai.in</span>
+                </a>
+                <a
+                  href="https://www.instagram.com/codexpertai_nt/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    color: '#F472B6',
+                    fontSize: '0.8125rem',
+                    textDecoration: 'none',
+                    fontWeight: 500,
+                  }}
+                >
+                  <Instagram size={14} />
+                  <span>@codexpertai_nt</span>
+                </a>
+              </div>
               <a
                 href="https://nexoratechno.in"
                 target="_blank"
@@ -256,7 +292,7 @@ export const AboutPage: React.FC = () => {
                 style={{ width: '100%', display: 'inline-block' }}
               >
                 <Button variant="secondary" size="sm" style={{ width: '100%' }} rightIcon={<ExternalLink size={13} />}>
-                  Contact Nexora Techno
+                  Nexora Techno Corporate
                 </Button>
               </a>
             </div>

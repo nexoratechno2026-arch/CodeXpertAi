@@ -16,8 +16,8 @@ export const GuidesHubPage: React.FC = () => {
   return (
     <div className={styles.guidesPage}>
       <SEOHead
-        title="Engineering Guides & Interview Resources — CodeXpertAI"
-        description="Original, structured educational guides for software engineers on technical interview preparation, algorithmic problem solving, and AI mock interviews."
+        title="Engineering &amp; Technical Interview Guides – CodeXpertAI"
+        description="Explore in-depth technical interview guides, algorithmic problem-solving strategies, and system design frameworks for software engineers."
         canonicalPath="/guides"
         jsonLd={[breadcrumbData]}
       />

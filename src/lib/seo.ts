@@ -15,19 +15,25 @@ export interface SEOConfig {
   defaultBaseUrl: string;
   defaultOgImage: string;
   twitterHandle: string;
+  instagramHandle: string;
+  instagramUrl: string;
+  supportEmail: string;
 }
 
 export const SITE_CONFIG: SEOConfig = {
   siteName: 'CodeXpertAI',
   brandName: 'CodeXpertAI',
-  brandTagline: 'Unified Coding Practice & AI Mock Interviews',
+  brandTagline: 'Coding Practice & AI Mock Interviews',
   primaryDescription:
-    'Practice programming problems, execute code, review test results, track your submissions, and prepare for technical interviews with AI-guided mock interviews on CodeXpertAI, a product of Nexora Techno.',
+    'Practice coding problems and prepare for technical interviews with CodeXpertAI, a product of Nexora Techno. Improve your programming skills and build confidence for your next opportunity.',
   corporateName: 'Nexora Techno',
   corporateUrl: 'https://nexoratechno.in',
-  defaultBaseUrl: (import.meta.env.VITE_SITE_URL as string) || 'https://nexoratechno-code.web.app',
+  defaultBaseUrl: (import.meta.env.VITE_SITE_URL as string) || 'https://www.codexpertai.in',
   defaultOgImage: '/og-image.png',
   twitterHandle: '@CodeXpertAI',
+  instagramHandle: 'codexpertai_nt',
+  instagramUrl: 'https://www.instagram.com/codexpertai_nt/',
+  supportEmail: 'support@codexpertai.in',
 };
 
 /**
@@ -71,9 +77,16 @@ export function getOrganizationSchema() {
     logo: `${SITE_CONFIG.corporateUrl}/logo.png`,
     description: 'Technology solutions and innovative software engineering organization.',
     sameAs: [
+      SITE_CONFIG.instagramUrl,
       'https://www.linkedin.com/company/nexora-techno',
       'https://github.com/nexoratechno',
     ],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      email: SITE_CONFIG.supportEmail,
+      contactType: 'customer support',
+      availableLanguage: ['English'],
+    },
   };
 }
 
@@ -94,6 +107,9 @@ export function getWebSiteSchema() {
       name: SITE_CONFIG.corporateName,
       url: SITE_CONFIG.corporateUrl,
     },
+    sameAs: [
+      SITE_CONFIG.instagramUrl,
+    ],
     inLanguage: 'en-US',
   };
 }

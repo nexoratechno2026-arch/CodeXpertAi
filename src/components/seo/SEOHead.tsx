@@ -27,8 +27,8 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   jsonLd,
 }) => {
   const fullTitle = title
-    ? `${title} | ${SITE_CONFIG.siteName}`
-    : `${SITE_CONFIG.siteName} — ${SITE_CONFIG.brandTagline} | A Product of ${SITE_CONFIG.corporateName}`;
+    ? (title.includes(SITE_CONFIG.siteName) ? title : `${title} – ${SITE_CONFIG.siteName}`)
+    : `${SITE_CONFIG.siteName} – ${SITE_CONFIG.brandTagline}`;
 
   const canonicalUrl = getCanonicalUrl(canonicalPath);
   const fullOgImage = getFullImageUrl(ogImage);

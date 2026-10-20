@@ -18,8 +18,8 @@ export const TermsPage: React.FC = () => {
   return (
     <div className={styles.pageContainer}>
       <SEOHead
-        title="Terms and Conditions — CodeXpertAI"
-        description="Official terms of service and conditions for CodeXpertAI, a product of Nexora Techno. Guidelines for platform usage, code execution, and interview simulations."
+        title="Terms and Conditions – CodeXpertAI"
+        description="Review the official terms of service and conditions for CodeXpertAI, a product of Nexora Techno. Guidelines for coding practice and interview simulations."
         canonicalPath="/terms"
         jsonLd={[breadcrumbs]}
       />
@@ -411,8 +411,17 @@ export const TermsPage: React.FC = () => {
                 <div className={styles.contactItem}>
                   <div className={styles.contactLabel}>Email Support</div>
                   <div className={styles.contactValue}>
-                    <a href="mailto:support@codexpertai.com" className={styles.contactLink}>
-                      support@codexpertai.com
+                    <a href="mailto:support@codexpertai.in" className={styles.contactLink}>
+                      support@codexpertai.in
+                    </a>
+                  </div>
+                </div>
+
+                <div className={styles.contactItem}>
+                  <div className={styles.contactLabel}>Instagram Updates</div>
+                  <div className={styles.contactValue}>
+                    <a href="https://www.instagram.com/codexpertai_nt/" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
+                      @codexpertai_nt
                     </a>
                   </div>
                 </div>
@@ -420,8 +429,8 @@ export const TermsPage: React.FC = () => {
                 <div className={styles.contactItem}>
                   <div className={styles.contactLabel}>Official Website</div>
                   <div className={styles.contactValue}>
-                    <a href="https://codexpertai.com" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
-                      https://codexpertai.com
+                    <a href="https://www.codexpertai.in" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
+                      https://www.codexpertai.in
                     </a>
                   </div>
                 </div>
@@ -429,7 +438,7 @@ export const TermsPage: React.FC = () => {
                 <div className={styles.contactItem}>
                   <div className={styles.contactLabel}>Business / Legal Entity</div>
                   <div className={styles.contactValue}>
-                    Codexpert AI Technologies
+                    CodeXpertAI • A Product of Nexora Techno
                   </div>
                 </div>
               </div>

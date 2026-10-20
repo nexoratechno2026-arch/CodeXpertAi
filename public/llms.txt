@@ -12,15 +12,19 @@ CodeXpertAI brings together algorithmic assessment and real-time technical mock 
 - **Unified Skill Intelligence:** Single student profile where objective code execution metrics and subjective interview evaluations remain distinct yet correlated.
 
 ## Key Public URLs
-- Homepage: https://nexoratechno-code.web.app/
-- About CodeXpertAI: https://nexoratechno-code.web.app/about
-- Frequently Asked Questions: https://nexoratechno-code.web.app/faq
-- Engineering Guides: https://nexoratechno-code.web.app/guides
-- Technical Interview Preparation: https://nexoratechno-code.web.app/guides/technical-interview-prep
-- Effective Coding Practice: https://nexoratechno-code.web.app/guides/effective-coding-practice
-- AI Mock Interview Guide: https://nexoratechno-code.web.app/guides/ai-mock-interview-guide
-- Privacy Policy: https://nexoratechno-code.web.app/privacy
-- Terms & Conditions: https://nexoratechno-code.web.app/terms
+- Homepage: https://www.codexpertai.in/
+- About CodeXpertAI: https://www.codexpertai.in/about
+- Frequently Asked Questions: https://www.codexpertai.in/faq
+- Engineering Guides: https://www.codexpertai.in/guides
+- Technical Interview Preparation: https://www.codexpertai.in/guides/technical-interview-prep
+- Effective Coding Practice: https://www.codexpertai.in/guides/effective-coding-practice
+- AI Mock Interview Guide: https://www.codexpertai.in/guides/ai-mock-interview-guide
+- Privacy Policy: https://www.codexpertai.in/privacy
+- Terms & Conditions: https://www.codexpertai.in/terms
+
+## Contact & Social Channels
+- Email Support: support@codexpertai.in
+- Instagram: https://www.instagram.com/codexpertai_nt/ (@codexpertai_nt)
 
 ## Publisher Information
 - Organization: Nexora Techno

@@ -16,7 +16,11 @@ export const NotFoundPage: React.FC = () => {
         padding: '24px',
       }}
     >
-      <SEOHead noindex={true} title="404 — Page Not Found" description="The page you requested could not be found." />
+      <SEOHead
+        noindex={true}
+        title="Page Not Found (404) – CodeXpertAI"
+        description="The page you requested could not be found on CodeXpertAI. Please verify the URL or return to our homepage."
+      />
       <Card
         style={{
           maxWidth: '460px',

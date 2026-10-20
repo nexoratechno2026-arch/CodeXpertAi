@@ -34,7 +34,7 @@ export const GuideDetailPage: React.FC = () => {
   return (
     <div className={styles.guidesPage}>
       <SEOHead
-        title={`${guide.title} — CodeXpertAI Guide`}
+        title={`${guide.title} – CodeXpertAI`}
         description={guide.excerpt}
         canonicalPath={`/guides/${guide.slug}`}
         ogType="article"

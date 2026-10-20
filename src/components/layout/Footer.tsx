@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Mail, Instagram } from 'lucide-react';
 import styles from './Footer.module.css';
 
 export const Footer: React.FC = () => {
@@ -12,7 +12,9 @@ export const Footer: React.FC = () => {
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
               <img
                 src="/codexpertai-logo.png"
-                alt="CodeXpertAI"
+                alt="CodeXpertAI Logo"
+                width={28}
+                height={28}
                 style={{ height: '28px', width: '28px', objectFit: 'contain' }}
               />
               <span style={{ fontSize: '1.15rem', fontWeight: 700, color: '#F5F5F5' }}>
@@ -22,7 +24,7 @@ export const Footer: React.FC = () => {
             <p className={styles.brandDesc} style={{ marginBottom: '8px' }}>
               A unified developer platform combining structured coding practice with AI-guided mock interviews.
             </p>
-            <div style={{ fontSize: '0.8125rem', color: '#9CA3AF', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <div style={{ fontSize: '0.8125rem', color: '#9CA3AF', display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '12px' }}>
               <span>A product of</span>
               <a
                 href="https://nexoratechno.in"
@@ -32,6 +34,28 @@ export const Footer: React.FC = () => {
               >
                 Nexora Techno
                 <ExternalLink size={12} />
+              </a>
+            </div>
+
+            {/* Social & Contact info */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.8125rem' }}>
+              <a
+                href="mailto:support@codexpertai.in"
+                style={{ color: '#D1D5DB', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+                title="Email CodeXpertAI Support"
+              >
+                <Mail size={13} color="#60A5FA" />
+                <span>support@codexpertai.in</span>
+              </a>
+              <a
+                href="https://www.instagram.com/codexpertai_nt/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: '#D1D5DB', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+                title="CodeXpertAI on Instagram"
+              >
+                <Instagram size={13} color="#E1306C" />
+                <span>@codexpertai_nt</span>
               </a>
             </div>
           </div>
@@ -59,7 +83,25 @@ export const Footer: React.FC = () => {
             </div>
 
             <div className={styles.column}>
-              <span className={styles.colTitle}>Legal & Company</span>
+              <span className={styles.colTitle}>Connect &amp; Legal</span>
+              <a
+                href="mailto:support@codexpertai.in"
+                className={styles.link}
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}
+              >
+                <Mail size={12} />
+                <span>support@codexpertai.in</span>
+              </a>
+              <a
+                href="https://www.instagram.com/codexpertai_nt/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.link}
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}
+              >
+                <Instagram size={12} />
+                <span>@codexpertai_nt</span>
+              </a>
               <Link to="/privacy" className={styles.link}>Privacy Policy</Link>
               <Link to="/terms" className={styles.link}>Terms &amp; Conditions</Link>
               <a

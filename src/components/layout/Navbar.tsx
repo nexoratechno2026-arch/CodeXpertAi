@@ -67,7 +67,9 @@ export const Navbar: React.FC = () => {
         <Link to={user ? '/dashboard' : '/'} className={styles.brand} aria-label="CodeXpertAI Homepage">
           <img
             src="/codexpertai-logo.png"
-            alt="CodeXpertAI"
+            alt="CodeXpertAI Logo"
+            width={32}
+            height={32}
             className={styles.brandLogoImg}
           />
           <div className={styles.brandText}>
