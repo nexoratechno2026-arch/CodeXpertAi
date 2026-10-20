@@ -4,14 +4,14 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/(.*)",
+      "source": "/:path*",
       "has": [
         {
           "type": "host",
           "value": "codexpertai.in"
         }
       ],
-      "destination": "https://www.codexpertai.in/$1",
+      "destination": "https://www.codexpertai.in/:path*",
       "permanent": true
     }
   ],
@@ -64,7 +64,7 @@
       ]
     },
     {
-      "source": "/(.*\\.(png|jpg|jpeg|svg|ico|webp|avif))",
+      "source": "/(.*\\.(?:png|jpg|jpeg|svg|ico|webp|avif))",
       "headers": [
         {
           "key": "Cache-Control",
@@ -75,7 +75,7 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!assets/|avatars/|robots\\.txt|sitemap\\.xml|llms\\.txt|.*\\.(png|jpg|jpeg|svg|ico|webp|avif|json|txt|css|js)).*)",
+      "source": "/(.*)",
       "destination": "/index.html"
     }
   ]
